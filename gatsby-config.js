@@ -29,7 +29,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
-        short_name: `starter`,
+        short_name: `Parrot challenge`,
         start_url: `/`,
         background_color: `#f04e4a`,
         display: `standalone`,
