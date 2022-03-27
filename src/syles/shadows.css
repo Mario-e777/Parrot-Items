@@ -1,0 +1,10 @@
+html {
+  --shadow-normal: 0.3px 0.5px 0.7px rgb(10 10 10 / 20%),
+  0.4px 0.8px 1px -1.2px rgb(10 10 10 / 20%),
+  1px 2px 2.5px -2.5px rgb(10 10 10 / 20%),
+  1px 2px 2.5px -2.5px rgb(10 10 10 / 20%);
+  --shadow-hover: 0.3px 0.5px 0.7px rgb(10 10 10 / 14%),
+  0.8px 1.6px 2px -0.8px rgb(10 10 10 / 14%),
+  2.1px 4.1px 5.2px -1.7px rgb(10 10 10 / 14%),
+  5px 10px 12.6px -2.5px rgb(10 10 10 / 14%);
+}

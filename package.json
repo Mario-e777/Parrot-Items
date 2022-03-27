@@ -5,19 +5,28 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@types/styled-components": "^5.1.24",
+    "babel-plugin-styled-components": "^2.0.6",
+    "browser-monads": "^1.0.0",
     "gatsby": "^4.10.1",
     "gatsby-plugin-gatsby-cloud": "^4.10.0",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^2.10.0",
     "gatsby-plugin-manifest": "^4.10.1",
-    "gatsby-plugin-offline": "^5.10.1",
+    "gatsby-plugin-offline": "^5.10.2",
     "gatsby-plugin-react-helmet": "^5.10.0",
     "gatsby-plugin-sharp": "^4.10.1",
+    "gatsby-plugin-styled-components": "^5.10.0",
     "gatsby-source-filesystem": "^4.10.0",
     "gatsby-transformer-sharp": "^4.10.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-query": "^3.34.17",
+    "react-spring": "^9.4.4",
+    "spinners-react": "^1.0.6",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "prettier": "^2.6.0"
@@ -30,7 +39,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "gatsby develop",
+    "start": "gatsby develop --host 0.0.0.0",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
