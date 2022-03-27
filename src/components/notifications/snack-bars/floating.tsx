@@ -47,9 +47,10 @@ const SnackBarContainer = animated(styled.div<SnackInterface>`
     overflow: hidden;
     font-size: var(--base-size);
     border: 1px solid var(--black);
-
+    
     &::after {
       content: 'ℹ';
+      border-radius: 5px 0 0 5px;
       position: absolute;
       display: flex;
       align-items: center;
@@ -57,17 +58,15 @@ const SnackBarContainer = animated(styled.div<SnackInterface>`
       left: 0;
       width: 1.44rem;
       height: 100%;
-      border-top: 1px solid var(--orange);
       font-size: 1rem;
+      border: 1px solid var(--black);
 
       ${props => props.isSuccess && css`
         background-color: var(--green);
-        border: 1px solid var(--green);
         color: var(--black);
       `}
       ${props => props.isError && css`
         background-color: var(--orange);
-        border: 1px solid var(--orange);
       `}
     }
   }
