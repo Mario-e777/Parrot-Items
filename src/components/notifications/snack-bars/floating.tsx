@@ -82,7 +82,7 @@ export default function floating(props) {
   return (
     <FloatingContainer {...props} >
       <div>
-        <p>Wrong email or password</p>
+        <p>Usuario o contraseña incorrecta</p>
       </div>
     </FloatingContainer>
   );
