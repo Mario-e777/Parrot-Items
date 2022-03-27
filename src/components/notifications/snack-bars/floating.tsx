@@ -16,7 +16,6 @@ const FloatingContainer = styled.div<Status>`
   --top-n-right-active: 0.94rem;
 
   width: fit-content;
-  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,10 +26,12 @@ const FloatingContainer = styled.div<Status>`
   ${props => props.duration && css`animation-duration: ${props.duration}ms;`}
   animation-name: fromTop;
   z-index: +9999;
-
+  
   & div {
+    padding: 0.94rem;
+    padding-left: calc(1.44rem + 0.94rem);
     flex-direction: column;
-    width: 18rem;
+    width: fit-content;
     height: 100%;
     display: flex;
     align-items: center;
