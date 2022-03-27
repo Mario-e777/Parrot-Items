@@ -49,6 +49,13 @@ const LoginContainer = styled.form`
       font-size: 1.06rem;
     }
   }
+
+  & .new-account-link {
+    width: fit-content;
+    margin-right: auto;
+    font-size: 0.94rem;
+    a { color: var(--white); }
+  }
 `;
 
 export default function Login() {
@@ -61,7 +68,7 @@ export default function Login() {
 
   const handleLogIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    LogInMutation.mutate();
+    !LogInMutation.isLoading && LogInMutation.mutate();
   };
 
   useEffect(() => {
@@ -73,11 +80,11 @@ export default function Login() {
     <LoginContainer onSubmit={event => handleLogIn(event)}>
       <div className='brand-container' >
         <img src={Brand} ></img>
-        <p>Log in - Frontend challenge</p>
+        <p>Iniciar sesión - Sr. Frontend challenge</p>
       </div>
-      <Input ref={emailRef} labeltext="Email" placeholder="Email" type="email" required />
-      <Input ref={passwordRef} labeltext="Password" placeholder="Password" type="password" required />
-      <Checkbox text='Remember me' />
+      <Input ref={emailRef} labeltext="Usuario" placeholder="john.doe@mail.com" type="email" required />
+      <Input ref={passwordRef} labeltext="Contraseña" placeholder="••••••••••••" type="password" required />
+      <Checkbox text='Recordarme' />
       <Button type='submit' >
         {LogInMutation.isLoading
           ? <SpinnerCircularFixed
@@ -85,8 +92,9 @@ export default function Login() {
             color="var(--white)"
             secondaryColor="var(--black)"
           />
-          : <p>Log in</p>}
+          : <p>Iniciar sesión</p>}
       </Button>
+      <p className='new-account-link' >¿Aún no tienes cuenta? <a target='_blank' href='https://pos.parrotsoftware.io/demo/' >Solicita una demo</a></p>
     </LoginContainer>
   )
 };
