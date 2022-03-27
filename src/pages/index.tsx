@@ -48,7 +48,7 @@ const LoginContainer = styled.div`
 const IndexPage = () => {
   return (
     <Layout>
-      <Seo title="Home" />
+      <Seo title="Login" />
       <LoginContainer>
         <LoginForm />
         <GalleryContainer />
