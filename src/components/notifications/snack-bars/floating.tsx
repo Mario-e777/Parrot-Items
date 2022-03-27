@@ -50,7 +50,7 @@ const SnackBarContainer = animated(styled.div<SnackInterface>`
     
     &::after {
       content: 'ℹ';
-      border-radius: 5px 0 0 5px;
+      border-radius: 2px 0 0 2px;
       position: absolute;
       display: flex;
       align-items: center;
