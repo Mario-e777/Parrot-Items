@@ -1,7 +1,7 @@
 const logIn = (email: string, password: string) => {
   return new Promise(resolve => {
     fetch(
-      'http://api-staging.parrot.rest/api/auth/token',
+      'https://api-staging.parrot.rest/api/auth/token',
       {
         method: 'POST',
         headers: {
