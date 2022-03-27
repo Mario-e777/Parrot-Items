@@ -1,5 +1,5 @@
 const logIn = (email: string, password: string) => {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     fetch(
       'https://api-staging.parrot.rest/api/auth/token',
       {
@@ -12,7 +12,12 @@ const logIn = (email: string, password: string) => {
           password
         })
       }
-    ).then(response => resolve(response.json()))
+    ).then(async response => {
+      const RESPONSE: any = await response.json();
+      !RESPONSE.errors
+        ? resolve(RESPONSE)
+        : reject(RESPONSE);
+    })
       .catch(error => console.error(error));
   });
 };

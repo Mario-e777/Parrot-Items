@@ -117,10 +117,7 @@ export default function Gallery() {
 
   /* Gallery effect */
   useEffect(() => {
-    let galleryTimer = null;
-    galleryTimer && clearTimeout(galleryTimer);
-
-    galleryTimer = setTimeout(() => {
+    setTimeout(() => {
       document.getElementById(`benefit-image-${state.selectedImage}`)?.classList.remove('active');
       document.getElementById(`bullet-${state.selectedImage}`)?.classList.remove('active');
       setState({
@@ -133,7 +130,6 @@ export default function Gallery() {
 
     document.getElementById(`benefit-image-${state.selectedImage}`)?.classList.add('active');
     document.getElementById(`bullet-${state.selectedImage}`)?.classList.add('active');
-    return () => clearTimeout(galleryTimer);
   }, [state.selectedImage]);
 
   return (

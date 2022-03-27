@@ -1,28 +1,35 @@
 /* React & Gatsby stuff */
 import React from "react";
+
+/* Snack bars */
 import FloatingSnackBar from "./snack-bars/floating";
-import { unmountComponentAtNode } from "react-dom";
 
 export default class Sender {
   type: string;
-  layoutFunctions: any;
+  handleNatification: Function;
   senderTimeOut: NodeJS.Timeout;
   snackID: number;
+  snackTTL: number;
 
-  constructor(type: string, layoutFunctions: any) {
+  constructor(type: string, handleNatification: Function) {
     this.type = type;
-    this.layoutFunctions = layoutFunctions;
+    this.handleNatification = handleNatification;
     this.senderTimeOut = null;
-    this.snackID = Math.floor(Math.random() * 999999);
+    this.snackID = Math.floor(Math.random() * 9999);
+    this.snackTTL = 4000;
   };
 
   send({ isSuccess, isError }) {
-    setTimeout(() => document.getElementById(`${this.snackID}`).style.display = 'none', 3333);
-    this.layoutFunctions.handleNatification(
+    setTimeout(() => {
+      /* Delete element */
+      document.getElementById(`${this.snackID}`).style.display = 'none';
+    }, this.snackTTL);
+
+    this.handleNatification(
       <FloatingSnackBar
         id={`${this.snackID}`}
         key={this.snackID}
-        duration={3333}
+        duration={this.snackTTL}
         isSuccess={isSuccess}
         isError={isError}
       />

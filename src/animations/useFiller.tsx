@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSpring } from 'react-spring';
 
 function useFiller() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
   const fillerStyle = useSpring({
     config: {
       mass: 0.5,
@@ -13,11 +13,11 @@ function useFiller() {
       friction: 24
     },
     to: {
-      width: isChecked ? '0.6rem' : '0rem',
-      height: isChecked ? '0.6rem' : '0rem',
+      width: isFilled ? '0.6rem' : '0rem',
+      height: isFilled ? '0.6rem' : '0rem',
     }
   });
-  return [fillerStyle, setIsChecked];
+  return [fillerStyle, setIsFilled];
 };
 
 export default useFiller;

@@ -4,20 +4,20 @@ import { useState } from 'react';
 /* Modules */
 import { useSpring } from 'react-spring';
 
-function useFiller() {
-  const [isChecked, setIsChecked] = useState(false);
-  const fillerStyle = useSpring({
+function useNotification() {
+  const [isShowing, setIsShowing] = useState(false);
+  const notificationStyle = useSpring({
     config: {
       mass: 1,
-      tension: 240,
-      friction: 20
+      tension: 380,
+      friction: 28,
     },
     to: {
-      width: isChecked ? '0.6rem' : '0rem',
-      height: isChecked ? '0.6rem' : '0rem',
-    }
+      right: isShowing ? '0.94rem' : '-19rem',
+    },
+    loop: { reverse: true },
   });
-  return [fillerStyle, setIsChecked];
+  return [notificationStyle, setIsShowing];
 };
 
-export default useFiller;
+export default useNotification;

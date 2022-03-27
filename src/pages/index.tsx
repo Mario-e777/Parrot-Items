@@ -30,7 +30,6 @@ const LoginContainer = styled.div`
     a {
       color: var(--white);
       cursor: pointer;
-      /* text-decoration-line: none; */
       padding: 0 0.5rem;
       text-align: center;
       &:hover { text-decoration-line: underline; }

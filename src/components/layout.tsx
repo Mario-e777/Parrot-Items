@@ -24,8 +24,8 @@ const LayoutContainer = styled.div`
   }
 `;
 
-/* Context */
-const LayoutContext = createContext<{
+/* Contexts */
+const NotificationContext = createContext<{
   handleNatification?: Function
 }>({});
 
@@ -37,21 +37,20 @@ const Layout = ({ children }:
 ) => {
   const [notification, setNotification] = useState<JSX.Element>();
 
-  function handleNatification(comp: JSX.Element) {
-    setNotification(() => comp);
-  };
+  const handleNatification = (notification: JSX.Element) =>
+    setNotification(() => notification);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LayoutContext.Provider value={{ handleNatification }}>
+      <NotificationContext.Provider value={{ handleNatification }}>
         <LayoutContainer>
           {notification}
           <main>{children}</main>
         </LayoutContainer>
-      </LayoutContext.Provider>
+      </NotificationContext.Provider>
     </QueryClientProvider>
   )
 };
 
 export default Layout;
-export { LayoutContext };
+export { NotificationContext };

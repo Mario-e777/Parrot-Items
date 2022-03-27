@@ -1,19 +1,23 @@
 /* React stuff */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /* Modules */
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
-interface Status {
+/* Animation hooks */
+import useNotification from '../../../animations/useNotification';
+
+interface SnackInterface {
+  id: string,
   isSuccess: boolean,
   isError: boolean,
   duration: number
 };
-
-const FloatingContainer = styled.div<Status>`
+const SnackBarContainer = animated(styled.div<SnackInterface>`
   /* Custom props */
   --right-inactive: -19rem;
-  --top-n-right-active: 0.94rem;
+  --base-size: 0.94rem;
 
   width: fit-content;
   display: flex;
@@ -22,14 +26,13 @@ const FloatingContainer = styled.div<Status>`
   background-color: transparent;
   position: absolute;
   right: var(--right-inactive);
-  top: var(--top-n-right-active);
+  top: var(--base-size);
   ${props => props.duration && css`animation-duration: ${props.duration}ms;`}
-  animation-name: fromTop;
   z-index: +9999;
   
   & div {
-    padding: 0.94rem;
-    padding-left: calc(1.44rem + 0.94rem);
+    padding: var(--base-size);
+    padding-left: calc(1.44rem + var(--base-size));
     flex-direction: column;
     width: fit-content;
     height: 100%;
@@ -42,7 +45,7 @@ const FloatingContainer = styled.div<Status>`
     background-color: var(--black);
     position: relative;
     overflow: hidden;
-    font-size: 0.94rem;
+    font-size: var(--base-size);
     border: 1px solid var(--black);
 
     &::after {
@@ -58,32 +61,32 @@ const FloatingContainer = styled.div<Status>`
       font-size: 1rem;
 
       ${props => props.isSuccess && css`
-        background-color: var(--orange);
-        border: 1px solid var(--orange);
+        background-color: var(--green);
+        border: 1px solid var(--green);
+        color: var(--black);
       `}
       ${props => props.isError && css`
         background-color: var(--orange);
         border: 1px solid var(--orange);
       `}
     }
-    
   }
+`);
 
-  @keyframes fromTop {
-    0% { right: var(--right-inactive); }
-    20% { right: var(--top-n-right-active); }
-    50% { right: var(--top-n-right-active); }
-    80% { right: var(--top-n-right-active); }
-    100% { right: var(--right-inactive); }
-  }
-`;
-
-export default function floating(props) {
+export default function floatingSnackBar(props: SnackInterface) {
+  const [notificationStyle, setIsShowing] = useNotification();
+  useEffect(() => {
+    setIsShowing(true)
+    setTimeout(() => setIsShowing(false), 3333);
+  }, []);
   return (
-    <FloatingContainer {...props} >
+    <SnackBarContainer
+      {...props}
+      style={{ ...notificationStyle }}
+    >
       <div>
         <p>Usuario o contraseña incorrecta</p>
       </div>
-    </FloatingContainer>
+    </SnackBarContainer>
   );
 };

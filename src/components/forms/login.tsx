@@ -13,7 +13,7 @@ import Checkbox from '../elements/checkbox';
 import NotificationSender from '../notifications/sender';
 
 /* Contexts */
-import { LayoutContext } from '../layout';
+import { NotificationContext } from '../layout';
 
 /* Endpoints & utils */
 import { logIn } from '../../endpoints/login';
@@ -59,21 +59,24 @@ const LoginContainer = styled.form`
 `;
 
 export default function Login() {
-  /* Refs */
+  /* Hooks stuff */
+  const { handleNatification } = useContext(NotificationContext)
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-
   const LogInMutation = useMutation(() => logIn(emailRef.current.value, passwordRef.current.value));
-  const notificationSender = new NotificationSender('snack', useContext(LayoutContext));
+
+  /* Functions */
+  const notificationSender = new NotificationSender('snack', handleNatification);
 
   const handleLogIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     !LogInMutation.isLoading && LogInMutation.mutate();
   };
 
+  /* Effects */
   useEffect(() => {
-    (LogInMutation.isSuccess || LogInMutation.isError) && notificationSender.send(LogInMutation);
-    console.log(LogInMutation);
+    (LogInMutation.isSuccess || LogInMutation.isError)
+      && notificationSender.send(LogInMutation);
   }, [LogInMutation.isSuccess, LogInMutation.isError]);
 
   return (
