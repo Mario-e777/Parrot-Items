@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Parrot - Sr. Frontend challenge`,
+    description: `Frontend challenge to have fun and get the position of senior frontend developer at Parrot.`,
+    author: `mcontreras.se95@gmail.com`,
+    siteUrl: `https://parrotitemsmain.gatsbyjs.io/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -33,7 +33,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#f04e4a`,
         display: `standalone`,
-        icon: `${__dirname}/src/assets/images/gatsby-icon.png`,
+        icon: `${__dirname}/src/assets/images/parrot-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
