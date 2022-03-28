@@ -71,7 +71,7 @@ const ItemExpand = animated(styled.div`
   }
 `);
 
-/* Constants */
+/* Constants  */
 const imageProps = {
   quality: 100,
   alt: 'Parrot benefit'
