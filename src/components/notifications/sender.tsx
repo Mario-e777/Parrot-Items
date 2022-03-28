@@ -1,28 +1,30 @@
 /* React & Gatsby stuff */
 import React from "react";
 
+/* Modules */
+import uniqid from 'uniqid';
+
 /* Snack bars */
 import FloatingSnackBar from "./snack-bars/floating";
 
 export default class Sender {
-  type: string;
   handleNatification: Function;
   senderTimeOut: NodeJS.Timeout;
-  snackID: number;
+  snackID: string;
   snackTTL: number;
 
-  constructor(type: string, handleNatification: Function) {
-    this.type = type;
+  constructor(handleNatification: Function) {
     this.handleNatification = handleNatification;
     this.senderTimeOut = null;
-    this.snackID = Math.floor(Math.random() * 9999);
+    this.snackID = uniqid();
     this.snackTTL = 4000;
   };
 
-  send({ isSuccess, isError }) {
+  send({ isSuccess, isError, message }) {
     setTimeout(() => {
-      /* Delete element */
-      document.getElementById(`${this.snackID}`).style.display = 'none';
+      /* Remove element */
+      const SNACK_ELEMENT = document.getElementById(`${this.snackID}`);
+      SNACK_ELEMENT && (SNACK_ELEMENT.style.display = 'none');
     }, this.snackTTL);
 
     this.handleNatification(
@@ -32,6 +34,7 @@ export default class Sender {
         duration={this.snackTTL}
         isSuccess={isSuccess}
         isError={isError}
+        message={message}
       />
     );
   };

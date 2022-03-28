@@ -29,6 +29,7 @@ const InputContainer = styled.label`
     font-weight: 500;
     margin-bottom: 0.5rem;
     color: var(--white);
+    span { cursor: pointer; }
   }
   button {
     padding: 0;
@@ -60,7 +61,7 @@ export default (forwardRef((
 
   return (
     <InputContainer className={labelclassname} >
-      <p>{labeltext}</p>
+      <p><span>{labeltext}</span></p>
       <input
         {...props}
         type={revealPass ? 'text' : props.type}

@@ -1,13 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Parrot - Sr. Frontend challenge`,
+    title: `Sr. Frontend challenge`,
     description: `Frontend challenge to have fun and get the position of senior frontend developer at Parrot.`,
     author: `mcontreras.se95@gmail.com`,
     siteUrl: `https://parrotitemsmain.gatsbyjs.io/`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,7 +13,6 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -36,8 +33,6 @@ module.exports = {
         icon: `${__dirname}/src/assets/images/parrot-icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -46,6 +41,12 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
+    },
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-styled-components`,
+    'gatsby-plugin-page-transitions'
   ],
 }

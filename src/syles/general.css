@@ -3,8 +3,9 @@ html {
   -webkit-text-size-adjust: 100%;
   font: 112.5%/1.45em Roboto;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
+  background-color: var(--orange);
 }
 body {
   margin: 0;
@@ -68,6 +69,21 @@ label {
   width: 100%;
   overflow: visible;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
 svg:not(:root) {
   overflow: hidden;
 }
@@ -123,7 +139,17 @@ button:-moz-focusring {
   font: inherit;
 }
 ::-webkit-scrollbar {
-  display: none;
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.509);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
 }
 * {
   box-sizing: inherit;

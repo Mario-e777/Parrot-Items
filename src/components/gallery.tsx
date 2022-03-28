@@ -31,7 +31,7 @@ const GalleryContainer = styled.div`
     .image-text {
       position: absolute;
       opacity: 0;
-      transition-duration: 369ms;
+      transition-duration: 333ms;
       
       p {
         max-width: 100%;
@@ -82,31 +82,31 @@ export default function Gallery() {
   const [state, setState] = useState({
     selectedImage: 0,
     images: [
-      <div id='benefit-image-0' className='image-text' >
+      <div key='image-0' id='benefit-image-0' className='image-text' >
         <StaticImage {...imageProps}
           src={'https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio01.png'}
         />
         <p>Maneja todas tus marcas y canales en un solo dispositivo.</p>
       </div>,
-      <div id='benefit-image-1' className='image-text' >
+      <div key='image-1' id='benefit-image-1' className='image-text' >
         <StaticImage {...imageProps}
           src={'https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio02.png'}
         />
         <p>Administra tu restaurante desde donde estés.</p>
       </div>,
-      <div id='benefit-image-2' className='image-text' >
+      <div key='image-2' id='benefit-image-2' className='image-text' >
         <StaticImage {...imageProps}
           src={'https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio03.png'}
         />
         <p>Agiliza tu servicio al cliente automatizando actividades rutinarias.</p>
       </div>,
-      <div id='benefit-image-3' className='image-text' >
+      <div key='image-3' id='benefit-image-3' className='image-text' >
         <StaticImage {...imageProps}
           src={'https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio04.png'}
         />
         <p>Obtenen mayor visibilidad y entendimiento de tu negocio en tiempo real.</p>
       </div>,
-      <div id='benefit-image-4' className='image-text' style={{ maxWidth: '30rem' }} >
+      <div key='image-4' id='benefit-image-4' className='image-text' style={{ maxWidth: '30rem' }} >
         <StaticImage {...imageProps}
           src={'https://pos.parrotsoftware.io/wp-content/uploads/2021/06/WebsiteArtboard-32.png'}
         />

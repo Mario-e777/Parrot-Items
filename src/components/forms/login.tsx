@@ -1,5 +1,6 @@
 /* React & Gatsby stuff */
 import React, { useRef, FormEvent, useContext, useEffect } from 'react';
+import { navigate } from 'gatsby';
 
 /* Modules */
 import styled from 'styled-components';
@@ -13,7 +14,7 @@ import Checkbox from '../elements/checkbox';
 import NotificationSender from '../notifications/sender';
 
 /* Contexts */
-import { NotificationContext } from '../layout';
+import { NotificationContext } from '../layouts/global';
 
 /* Endpoints & utils */
 import { logIn } from '../../endpoints/login';
@@ -63,10 +64,7 @@ export default function Login() {
   const { handleNatification } = useContext(NotificationContext)
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const LogInMutation = useMutation(() => logIn(emailRef.current.value, passwordRef.current.value));
-
-  /* Functions */
-  const notificationSender = new NotificationSender('snack', handleNatification);
+  const LogInMutation : any = useMutation(() => logIn(emailRef.current.value, passwordRef.current.value));
 
   const handleLogIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,14 +73,18 @@ export default function Login() {
 
   /* Effects */
   useEffect(() => {
-    (LogInMutation.isSuccess || LogInMutation.isError)
-      && notificationSender.send(LogInMutation);
+    const notificationSender = new NotificationSender(handleNatification);
+    if (LogInMutation.isSuccess) {
+      saveTokens({ access: LogInMutation.data.access, refresh: LogInMutation.data.refresh });
+      navigate('/items');
+    };
+    LogInMutation.isError && notificationSender.send({ ...LogInMutation, message: 'Usuario o contraseña incorrecta' });
   }, [LogInMutation.isSuccess, LogInMutation.isError]);
 
   return (
     <LoginContainer onSubmit={event => handleLogIn(event)}>
       <div className='brand-container' >
-        <img src={Brand} ></img>
+        <img src={Brand} />
         <p>Iniciar sesión - Sr. Frontend challenge</p>
       </div>
       <Input ref={emailRef} labeltext="Usuario" placeholder="john.doe@mail.com" type="email" required />

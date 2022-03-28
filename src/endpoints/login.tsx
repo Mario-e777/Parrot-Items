@@ -1,7 +1,7 @@
 const logIn = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
     fetch(
-      'https://api-staging.parrot.rest/api/auth/token',
+      `${process.env.BASE_URL}/api/auth/token`,
       {
         method: 'POST',
         headers: {

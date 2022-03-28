@@ -6,14 +6,13 @@ import styled from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 /* Styles */
-import "../syles/general.css";
-import "../syles/colors.css";
-import "../syles/shadows.css";
-import "../syles/transitions.css";
+import "../../syles/general.css";
+import "../../syles/colors.css";
+import "../../syles/shadows.css";
+import "../../syles/transitions.css";
 
 /* Styled components */
 const LayoutContainer = styled.div`
-  background-color: var(--orange);
   height: 100vh;
   width: 100vw;
 
@@ -21,6 +20,13 @@ const LayoutContainer = styled.div`
     height: 100%;
     width: 100%;
     display: grid;
+
+    background-color: var(--orange);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: minmax(24rem, 0.8fr) 1fr;
+    grid-template-rows: 1fr 0.1fr;
+    row-gap: 1rem;
   }
 `;
 

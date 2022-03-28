@@ -12,7 +12,8 @@ interface SnackInterface {
   id: string,
   isSuccess: boolean,
   isError: boolean,
-  duration: number
+  duration: number,
+  message: string
 };
 const SnackBarContainer = animated(styled.div<SnackInterface>`
   /* Custom props */
@@ -84,7 +85,7 @@ export default function floatingSnackBar(props: SnackInterface) {
       style={{ ...notificationStyle }}
     >
       <div>
-        <p>Usuario o contraseña incorrecta</p>
+        <p>{props.message}</p>
       </div>
     </SnackBarContainer>
   );
