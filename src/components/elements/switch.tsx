@@ -48,7 +48,7 @@ export default function Switch({ itemId, status, parentCallback, product, index 
 
   return (
     <li key={product + index} >
-      <div style={state.statusOn ? { opacity: 0.5 } : {}} >
+      <div style={!state.statusOn ? { opacity: 0.5 } : {}} >
         <img src={product.imageUrl} />
         <span>
           <p className='product-name' >{product.name}</p>
