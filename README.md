@@ -9,6 +9,7 @@
 </h1>
 
 Frontend challenge para divertirse y obtener la posición de Sr. Frontend Developer en https://pos.parrotsoftware.io/.
+URL del proyecto: (https://parrotitemsmain.gatsbyjs.io/).
 
 ## 🚀 Inicio
 
@@ -70,8 +71,6 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 ## 💫 Deploy
 
-[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/products/cloud/)
-
-Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
+Por cada push a main, el deploy se hará automáticamente a Gatsby Cloud. (https://www.gatsbyjs.com/dashboard/6394b033-3392-4a8a-b3ac-fad20aadf41a/sites/615a8139-fdfc-4edd-8cc0-a77261d2ab03/deploys).
 
 <!-- AUTO-GENERATED-CONTENT:END -->
