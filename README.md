@@ -12,22 +12,23 @@ Frontend challenge para divertirse y obtener la posición de Sr. Frontend Develo
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the default starter.
+1.  **Descarga el proyecto.**
 
     ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
+    # HTTPS
+    git clone https://github.com/Mario-e777/Parrot-Items.git
+
+    # SSH
+    git clone git@github.com:Mario-e777/Parrot-Items.git
     ```
 
-1.  **Start developing.**
+1.  **Arranca el proyecto.**
 
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-default-starter/
-    gatsby develop
+    cd parrot-items/
+    npm run start
     ```
 
 1.  **Open the source code and start editing!**
