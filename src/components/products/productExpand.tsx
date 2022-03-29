@@ -141,24 +141,13 @@ export default function itemExpand(props: {
       >
         {props.categoryData.map((product, index) => {
           return (
-            <li key={product + index} >
-              <div style={product.availability === 'UNAVAILABLE' ? { opacity: 0.5 } : {}} >
-                <img src={product.imageUrl} />
-                <span>
-                  <p className='product-name' >{product.name}</p>
-                  <p className='product-description'>{product.description}</p>
-                  <p className='product-price' >${product.price}</p>
-                </span>
-              </div>
-
-              <div>
-                <Switch
-                  parentCallback={props.parentCallback}
-                  status={product.availability}
-                  itemId={product.uuid}
-                />
-              </div>
-            </li>
+            <Switch
+              index={index}
+              product={product}
+              parentCallback={props.parentCallback}
+              status={product.availability}
+              itemId={product.uuid}
+            />
           )
         })}
       </ul>

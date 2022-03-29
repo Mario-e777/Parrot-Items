@@ -32,11 +32,10 @@ const SwitchContainer = styled.div`
     box-shadow: var(--shadow-hover);
   }
 `;
- 
-export default function Switch({ itemId, status, parentCallback }) {
+
+export default function Switch({ itemId, status, parentCallback, product, index }) {
   const [state, setState] = useState({
     statusOn: status === 'AVAILABLE' ? true : false,
-    loaded: false,
   });
   const [switchStyle, setIsSwitchOn] = useSwitch(status === 'AVAILABLE' ? true : false);
 
@@ -48,8 +47,21 @@ export default function Switch({ itemId, status, parentCallback }) {
   };
 
   return (
-    <SwitchContainer onClick={() => switchStatus()} className='status-switch' >
-      <animated.span style={{ ...switchStyle }} />
-    </SwitchContainer>
+    <li key={product + index} >
+      <div style={state.statusOn ? { opacity: 0.5 } : {}} >
+        <img src={product.imageUrl} />
+        <span>
+          <p className='product-name' >{product.name}</p>
+          <p className='product-description'>{product.description}</p>
+          <p className='product-price' >${product.price}</p>
+        </span>
+      </div>
+
+      <div>
+        <SwitchContainer onClick={() => switchStatus()} className='status-switch' >
+          <animated.span style={{ ...switchStyle }} />
+        </SwitchContainer>
+      </div>
+    </li>
   )
 };
