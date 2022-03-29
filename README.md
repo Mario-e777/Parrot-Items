@@ -9,6 +9,7 @@
 </h1>
 
 Frontend challenge para divertirse y obtener la posición de Sr. Frontend Developer en https://pos.parrotsoftware.io/.
+<br/>
 URL del proyecto: (https://parrotitemsmain.gatsbyjs.io/).
 
 ## 🚀 Inicio
