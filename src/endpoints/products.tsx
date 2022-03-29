@@ -53,4 +53,28 @@ const updateItems = (status: string, itemId: string) => {
   });
 };
 
-export { getAllItems, updateItems };
+const getMyStore = () => {
+  return new Promise(async (resolve, reject) => {
+    fetch(
+      `${process.env.GATSBY_BASE_URL}/api/v1/users/me`,
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${getCurrentToken()}`,
+          'Content-Type': 'application/json'
+        },
+      }
+    ).then(async response => {
+      const RESPONSE: any = await response.json();
+      if (!RESPONSE.errors) {
+        resolve(RESPONSE)
+      } else {
+        await refreshToken({});
+        reject(RESPONSE);
+      }
+    })
+      .catch(error => console.error(error));
+  });
+};
+
+export { getAllItems, updateItems, getMyStore };

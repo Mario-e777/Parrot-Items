@@ -12,7 +12,7 @@ import { useMutation } from 'react-query';
 import { NotificationContext } from '../layouts/global';
 
 /* Endpoints & utils */
-import { getAllItems } from '../../endpoints/products';
+import { getAllItems, getMyStore } from '../../endpoints/products';
 
 /* Styled components */
 const ProductsContainer = styled.div`
@@ -67,19 +67,26 @@ export default function products({ parentState }) {
   /* Hooks stuff */
   const { setNotification } = useContext(NotificationContext)
   const ProductsMutation: any = useMutation(() => getAllItems());
+  const MyStoreMutation: any = useMutation(() => getMyStore());
   const [state, setState] = useState({
     productsToShow: {},
+    storeName: ''
   });
 
   /* Functions */
-  const handleMutate = () => {
+  const handleProducttsMutate = () => {
     ProductsMutation.mutate();
   };
-  
+
   /* Effects */
   useEffect(() => {
-    handleMutate();
+    handleProducttsMutate();
+    MyStoreMutation.mutate();
   }, []);
+
+  useEffect(() => {
+    MyStoreMutation.data && setState({ ...state, storeName: MyStoreMutation.data.result.stores[0].name});
+  }, [MyStoreMutation.isSuccess, MyStoreMutation.data]);
 
 
   useEffect(() => {
@@ -104,12 +111,12 @@ export default function products({ parentState }) {
   return (
     <ProductsContainer>
       <div className='items-container' >
-        <h2>La Casa De Toño - Items status</h2>
+        <h2>{state.storeName} - Status de productos</h2>
         <div className='items' >
           {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0) { /* Not category selected */
               return <ProductExpand
-                parentCallback={handleMutate}
+                parentCallback={handleProducttsMutate}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
               />
@@ -117,7 +124,7 @@ export default function products({ parentState }) {
             else if (parentState.state.filterBy.length !== 0) { /* Fillter by categories */
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ProductExpand
-                  parentCallback={handleMutate}
+                  parentCallback={handleProducttsMutate}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
                 />
