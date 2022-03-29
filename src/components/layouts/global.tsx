@@ -45,6 +45,8 @@ const GlobalLayout = ({ children }:
   useEffect(() => {
     if (!Cookies.get('accessToken') && !sessionStorage.getItem('accessToken')) {
       navigate('/');
+    } else {
+      navigate('/products');
     }
   }, []);
 
