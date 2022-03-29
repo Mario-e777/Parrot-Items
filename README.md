@@ -28,6 +28,7 @@ Frontend challenge para divertirse y obtener la posición de Sr. Frontend Develo
 
     ```shell
     cd parrot-items/
+    npm install
     npm run start
     ```
 
@@ -35,13 +36,14 @@ Frontend challenge para divertirse y obtener la posición de Sr. Frontend Develo
 
     La app estará disponible en la ruta `http://localhost:8000`!
 
-## 🧐 What's inside?
+## 🧐 ¿Qué hay adentro?
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
 
     .
     ├── node_modules
     ├── src
+        ├── .prettierrc
     ├── .gitignore
     ├── .prettierrc
     ├── gatsby-browser.js
