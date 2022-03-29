@@ -77,13 +77,13 @@ export default function Login() {
     const notificationSender = new NotificationSender(setNotification);
     if (LogInMutation.isSuccess) {
       saveTokens({ access: LogInMutation.data.access, refresh: LogInMutation.data.refresh, remember: state.rememberUser });
-      navigate('/items');
+      navigate('/products');
     };
     LogInMutation.isError && notificationSender.send({ ...LogInMutation, message: 'Usuario o contraseña incorrecta' });
   }, [LogInMutation.isSuccess, LogInMutation.isError]);
 
   useEffect(() => {
-    refreshToken({ to: '/items' });
+    refreshToken({ to: '/products' });
   }, []);
 
   return (
