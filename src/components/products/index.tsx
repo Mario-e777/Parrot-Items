@@ -98,21 +98,12 @@ export default function products({ parentState }) {
         <h2>La Casa De Toño - Items status</h2>
         <div className='items' >
           {Object.keys(state.productsToShow).map(categoryData => {
-            if (parentState.state.filterBy.length === 0 && parentState.state.textToSearch === '')
+            if (parentState.state.filterBy.length === 0)
               return <ItemExpand parentState={{ state, setState }} name={categoryData} categoryData={state.productsToShow[categoryData]} />
             else if (parentState.state.filterBy.length !== 0) {
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ItemExpand parentState={{ state, setState }} name={categoryData} categoryData={state.productsToShow[categoryData]} />
                 : <></>
-            } else if (parentState.state.textToSearch !== '') {
-              /* TODO: NEASTED SEARCH */
-              if (state.productsToShow[categoryData][0].name.includes(parentState.state.textToSearch) ||
-                state.productsToShow[categoryData][0].description.includes(parentState.state.textToSearch) ||
-                state.productsToShow[categoryData][0].price.includes(parentState.state.textToSearch)) {
-                return <ItemExpand parentState={{ state, setState }} name={categoryData} categoryData={state.productsToShow[categoryData]} />
-              } else {
-                return <></>
-              }
             }
           })}
         </div>

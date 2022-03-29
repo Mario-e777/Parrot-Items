@@ -70,7 +70,6 @@ export default function products() {
   const [state, setState] = useState({
     categories: [],
     filterBy: [],
-    textToSearch: ''
   });
 
   return (

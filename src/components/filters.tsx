@@ -72,14 +72,8 @@ export default function Filters({ options, parentState }) {
       <div className='filters-title-input-container' >
         <div className='filters-title-container' >
           <p className='filters-title' >Filtros</p>
-          <Input
-            onChange={event => parentState.setState({ ...parentState.state, textToSearch: event.target.value })}
-            type='text'
-            placeholder='Buscar producto'
-            outline
-          />
         </div>
-        <p className='filters-description' >Puedes filtrar los productos por categoria o buscar por coincidencia.</p>
+        <p className='filters-description' >Filtrar los productos por categoria.</p>
       </div>
       <div className='filters-container' >
         {options.map(option => <FilterButton parentState={parentState} option={option} />)}
