@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ItemExpand from '../itemExpand';
+import ItemExpand from './itemExpand';
 
 /* Components */
 import NotificationSender from '../notifications/sender';
