@@ -1,6 +1,6 @@
 /* React & Gatsby stuff */
 import React, { useState } from 'react';
-import PageTransition from 'gatsby-plugin-page-transitions';
+/* import PageTransition from 'gatsby-plugin-page-transitions'; */
 
 /* Components */
 import GlobalLayout from '../components/layouts/global';
@@ -60,7 +60,7 @@ export default function Items() {
   });
 
   return (
-    <PageTransition>
+
       <GlobalLayout>
         <ItemsContainer>
           <div className='brand-container' >
@@ -74,6 +74,6 @@ export default function Items() {
           </p>
         </ItemsContainer>
       </GlobalLayout>
-    </PageTransition>
+
   )
 };

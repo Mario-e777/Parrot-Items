@@ -1,6 +1,6 @@
 /* React & Gatsby stuff */
 import React from "react";
-import PageTransition from 'gatsby-plugin-page-transitions';
+/* import PageTransition from 'gatsby-plugin-page-transitions'; */
 
 /* Modules */
 import styled from 'styled-components';
@@ -34,9 +34,9 @@ const LoginContainer = styled.div`
 
 const IndexPage = () => {
   return (
-    <PageTransition>
-      <Seo title="Login" />
-      <GlobalLayout>
+
+    <GlobalLayout>
+        <Seo title="Login" />
         <LoginContainer>
           <LoginForm />
           <GalleryContainer />
@@ -46,7 +46,7 @@ const IndexPage = () => {
           </p>
         </LoginContainer>
       </GlobalLayout>
-    </PageTransition>
+
   )
 };
 
