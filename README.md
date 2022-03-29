@@ -1,16 +1,14 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  <a href="https://parrotitemsmain.gatsbyjs.io/">
+    <img alt="Parrot img" src="https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio04.png" width="60" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby's default starter
+  Parrot - Sr. Frontend Challenge
 </h1>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
-
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+Frontend challenge to have fun and get the position of Sr. Frontend Developer at https://pos.parrotsoftware.io/.
 
 ## 🚀 Quick start
 
