@@ -1,5 +1,5 @@
 /* React & Gatsby stuff */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 /* Modules */
 import { animated } from 'react-spring';

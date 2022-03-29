@@ -29,7 +29,7 @@ const logIn = (email: string, password: string) => {
 const refreshToken = (to) => {
   return new Promise(() => {
     fetch(
-      `${process.env.BASE_URL}/api/auth/token/refresh`,
+      `/api/auth/token/refresh`,
       {
         method: 'POST',
         headers: {
