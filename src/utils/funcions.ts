@@ -5,10 +5,15 @@ const getCssCustomProperty = (property: string) => {
   return window.getComputedStyle(ELEMENT).getPropertyValue(property);
 };
 
-const saveTokens = (responseObj: { access: string, refresh: string }) => {
-  const ttl = 30;
-  document.cookie = `accessToken=${responseObj.access}; max-age=${ttl * 60}`;
-  document.cookie = `refreshToken=${responseObj.refresh}; max-age=${ttl * 60}`;
+const saveTokens = (responseObj: { access: string, refresh: string, remember: boolean }) => {
+  const ttl = responseObj.remember && 30;
+  if (ttl) {
+    document.cookie = `accessToken=${responseObj.access}; max-age=${ttl * 60}`;
+    document.cookie = `refreshToken=${responseObj.refresh}; max-age=${ttl * 60}`;
+  } else {
+    sessionStorage.setItem('accessToken', responseObj.access);
+    sessionStorage.setItem('refreshToken', responseObj.refresh);
+  }
 };
 
 export {

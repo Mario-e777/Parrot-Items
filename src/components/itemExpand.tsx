@@ -1,11 +1,13 @@
 /* React & Gatsby stuff */
 import React, { useState, useEffect } from 'react';
-import { StaticImage } from "gatsby-plugin-image";
 
 /* Modules */
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 import uniqid from 'uniqid';
+
+/* Components */
+import Switch from '../components/elements/switch';
 
 /* Animation hooks */
 import useExpand from '../animations/useExpand';
@@ -24,12 +26,12 @@ const ItemExpand = animated(styled.div`
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid var(--black);
-    padding: 1rem 1.2rem;
+    padding: 1.1rem 1.2rem;
     cursor: pointer;
     font-weight: bold;
     
     p {
-      font-size: 1.06rem;
+      font-size: 1.0rem;
       transition-duration: 333ms;
     }
   }
@@ -48,37 +50,73 @@ const ItemExpand = animated(styled.div`
     background-color: var(--gray);
     display: grid;
     gap: 1rem;
-    padding: 1.4rem 1.28rem;
+    padding: 1.5rem 1.28rem;
   }
   li {
+    padding: 0 0.4rem;
+    font-size: 0.94rem;
     display: flex;
+    width: 100%;
     align-items: center;
-    padding-left: 0.4rem;
-    font-size: 1rem;
-    gap: 1rem;
+    justify-content: space-between;
 
-    .gatsby-image-wrapper {
+    & .status-switch {
+      width: 1.8rem;
+      height: 0.8rem;
+      border-radius: 100px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: var(--deep-gray);
+      cursor: pointer;
+      
+      span {
+        background-color: var(--orange);
+        border-radius: 100%;
+        display: block;
+        height: 1rem;
+        width: 1rem;
+        position: absolute;
+        box-shadow: var(--shadow-hover);
+      }
+    }
+    
+    div {
+      gap: 1rem;
+      display: flex;
+      display: flex;
+
+      span {
+        .product-name {
+          font-weight: bold;
+        }
+        .product-description {
+          font-size: 0.88rem;
+          margin-bottom: 0.4rem;
+          padding: 0.2rem 0.6rem 0 0;
+        }
+        .product-price {
+          font-weight: bold;
+        }
+      }
+    }
+
+    img {
       width: 3rem;
       height: 3rem;
       border: 1px solid var(--black);
       box-shadow: var(--shadow-normal);
       border-radius: 5px;
       background-color: var(--white);
-      img {
-        padding: 0.2rem;
-      }
+      padding: 0.2rem;
     }
   }
 `);
 
-/* Constants  */
-const imageProps = {
-  quality: 100,
-  alt: 'Parrot benefit'
-};
-export default function itemExpand() {
+export default function itemExpand(props) {
   const [state, setState] = useState({
     isExpanded: false,
+    statusIsOn: false,
     elementID: uniqid(),
     expandID: uniqid(),
   });
@@ -97,9 +135,9 @@ export default function itemExpand() {
   return (
     <ItemExpand style={{ ...fillerStyle }} >
       <div id={state.elementID} onClick={expandItem} className='title-button' >
-        <p>Drinks</p>
+        <p>{props.name}</p>
         <div className='expand-button' >
-          <span>(2)</span>
+          <span>({props.categoryData.length})</span>
           <animated.img style={{ ...rotateStyle }} className='open' src={expandArrow} />
         </div>
       </div>
@@ -107,62 +145,22 @@ export default function itemExpand() {
         id={state.expandID}
         className='open'
       >
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Beer</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
-        <li>
-          <StaticImage 
-            {...imageProps}
-            src='https://d1ralsognjng37.cloudfront.net/b49451f6-4f81-404e-bb97-2e486100b2b8.jpeg'
-          />
-          <p>Soda</p>
-        </li>
+        {props.categoryData.map(product => (
+          <li>
+            <div style={product.availability === 'UNAVAILABLE' ? { opacity: 0.5 } : {}} >
+              <img src={product.imageUrl} />
+              <span>
+                <p className='product-name' >{product.name}</p>
+                <p className='product-description'>{product.description}</p>
+                <p className='product-price' >${product.price}</p>
+              </span>
+            </div>
+
+            <div>
+              <Switch parentState={{ state: props.parentState.state, setState: props.parentState.setState }} status={product.availability} itemId={product.uuid} />
+            </div>
+          </li>
+        ))}
       </ul>
     </ItemExpand>
   )

@@ -45,11 +45,14 @@ const CheckboxCotainer = styled.label`
   }
 `;
 
-export default function Checkbox({ text }: { text: string }) {
+export default function Checkbox({ text, parentState }: { text: string, parentState: any }) {
   const [state, setState] = useState(false);
   const [fillerStyle, setIsChecked] = useFiller();
 
-  useEffect(() => { setIsChecked(state); }, [state]);
+  useEffect(() => { 
+    parentState.setState({ ...parentState.state, rememberUser: state });
+    setIsChecked(state);
+  }, [state]);
 
   return (
     <CheckboxCotainer >

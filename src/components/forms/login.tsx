@@ -1,5 +1,5 @@
 /* React & Gatsby stuff */
-import React, { useRef, FormEvent, useContext, useEffect } from 'react';
+import React, { useRef, FormEvent, useContext, useEffect, useState } from 'react';
 import { navigate } from 'gatsby';
 
 /* Modules */
@@ -17,7 +17,7 @@ import NotificationSender from '../notifications/sender';
 import { NotificationContext } from '../layouts/global';
 
 /* Endpoints & utils */
-import { logIn } from '../../endpoints/login';
+import { logIn, refreshToken } from '../../endpoints/login';
 import { saveTokens } from '../../utils/funcions';
 
 /* Assets */
@@ -61,10 +61,11 @@ const LoginContainer = styled.form`
 
 export default function Login() {
   /* Hooks stuff */
-  const { handleNatification } = useContext(NotificationContext)
+  const { setNotification } = useContext(NotificationContext)
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const LogInMutation : any = useMutation(() => logIn(emailRef.current.value, passwordRef.current.value));
+  const LogInMutation: any = useMutation(() => logIn(emailRef.current.value, passwordRef.current.value));
+  const [state, setState] = useState({ rememberUser: false });
 
   const handleLogIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,13 +74,17 @@ export default function Login() {
 
   /* Effects */
   useEffect(() => {
-    const notificationSender = new NotificationSender(handleNatification);
+    const notificationSender = new NotificationSender(setNotification);
     if (LogInMutation.isSuccess) {
-      saveTokens({ access: LogInMutation.data.access, refresh: LogInMutation.data.refresh });
+      saveTokens({ access: LogInMutation.data.access, refresh: LogInMutation.data.refresh, remember: state.rememberUser });
       navigate('/items');
     };
     LogInMutation.isError && notificationSender.send({ ...LogInMutation, message: 'Usuario o contraseña incorrecta' });
   }, [LogInMutation.isSuccess, LogInMutation.isError]);
+
+  useEffect(() => {
+    refreshToken({ to: '/items' });
+  }, []);
 
   return (
     <LoginContainer onSubmit={event => handleLogIn(event)}>
@@ -89,7 +94,7 @@ export default function Login() {
       </div>
       <Input ref={emailRef} labeltext="Usuario" placeholder="john.doe@mail.com" type="email" required />
       <Input ref={passwordRef} labeltext="Contraseña" placeholder="••••••••••••" type="password" required />
-      <Checkbox text='Recordarme' />
+      <Checkbox parentState={{ state, setState }} text='Recordarme' />
       <Button type='submit' >
         {LogInMutation.isLoading
           ? <SpinnerCircularFixed

@@ -7,14 +7,14 @@ import React, {
 } from 'react';
 
 /* Modules */
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 /* Assets */
 import EyeOff from '../../assets/svgs/eyeOff.svg';
 import Eye from '../../assets/svgs/eye.svg';
 
 /* Styled components */
-const InputContainer = styled.label`
+const InputContainer = styled.label<{ outline: boolean }>`
   position: relative;
 
   input {
@@ -22,7 +22,7 @@ const InputContainer = styled.label`
     padding: 0.8rem 1rem;
     border-radius: 5px;
     border: none;
-    box-shadow: var(--shadow-normal);
+    box-shadow: var(--shadow-normal);  
   }
   p {
     font-size: 1.02rem;
@@ -49,18 +49,30 @@ const InputContainer = styled.label`
       height: auto;
     }
   }
+
+  ${props => props.outline && css`
+    width: 22rem;
+    input {
+      border: 1px solid var(--black);
+      /* box-shadow: unset; */
+      /* border-radius: unset; */
+    }
+    p {
+      margin-bottom: unset;
+    }
+  `}
 `;
 
 export default (forwardRef((
   props: InputHTMLAttributes<any>
-  & { labeltext: string, labelclassname?: string },
+    & { outline?: boolean, labeltext?: string, labelclassname?: string },
   ref: ForwardedRef<any>
 ) => {
   const [revealPass, setRevealPass] = useState(false);
-  const { labeltext, labelclassname } = props;
+  const { labeltext, labelclassname, outline } = props;
 
   return (
-    <InputContainer className={labelclassname} >
+    <InputContainer outline={outline && outline} className={labelclassname} >
       <p><span>{labeltext}</span></p>
       <input
         {...props}

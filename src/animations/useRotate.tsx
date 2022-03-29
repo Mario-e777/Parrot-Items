@@ -13,7 +13,7 @@ function useRotate() {
       friction: 30
     },
     to: {
-      transform: isRotated ? 'rotate(0deg)' : 'rotate(180deg)',
+      transform: !isRotated ? 'rotate(0deg)' : 'rotate(180deg)',
     }
   });
   return [rotateStyle, setIsRotated];

@@ -9,11 +9,11 @@ function useExpand() {
   const fillerStyle = useSpring({
     config: {
       mass: 1,
-      tension: 340,
-      friction: 30
+      tension: 144,
+      friction: 22
     },
     to: {
-      height: isExpanded.isOpen ? isExpanded.listHeihg : isExpanded.height,
+      height: !isExpanded.isOpen ? isExpanded.listHeihg : isExpanded.height,
     }
   });
   return [fillerStyle, setIsExpanded];
