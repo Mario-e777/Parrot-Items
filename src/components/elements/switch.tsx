@@ -44,7 +44,7 @@ export default function Switch({ itemId, status, parentCallback }) {
     setIsSwitchOn(!state.statusOn);
     updateItems(state.statusOn ? 'UNAVAILABLE' : 'AVAILABLE', itemId);
     setState({ ...state, statusOn: !state.statusOn });
-    parentCallback.mutate();
+    parentCallback();
   };
 
   return (

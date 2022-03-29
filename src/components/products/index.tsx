@@ -68,14 +68,17 @@ export default function products({ parentState }) {
   const { setNotification } = useContext(NotificationContext)
   const ProductsMutation: any = useMutation(() => getAllItems());
   const [state, setState] = useState({
-    productsToShow: {},
-    reload: false
+    productsToShow: {}
   });
 
   /* Effects */
   useEffect(() => {
     ProductsMutation.mutate();
   }, []);
+
+  const handleMutate = () => {
+    ProductsMutation.mutate();
+  };
 
   useEffect(() => {
     const notificationSender = new NotificationSender(setNotification);
@@ -94,7 +97,7 @@ export default function products({ parentState }) {
       setState({ ...state, productsToShow: CATEGORIES });
     };
     ProductsMutation.isError && notificationSender.send({ ...ProductsMutation, message: 'Error al obtener productos' });
-  }, [ProductsMutation.data, ProductsMutation.isError]);
+  }, [ProductsMutation]);
 
   return (
     <ProductsContainer>
@@ -104,7 +107,7 @@ export default function products({ parentState }) {
           {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0) { /* Not category selected */
               return <ProductExpand
-                parentCallback={ProductsMutation}
+                parentCallback={handleMutate}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
               />
@@ -112,7 +115,7 @@ export default function products({ parentState }) {
             else if (parentState.state.filterBy.length !== 0) { /* Fillter by categories */
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ProductExpand
-                  parentCallback={ProductsMutation}
+                  parentCallback={handleMutate}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
                 />

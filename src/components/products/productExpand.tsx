@@ -141,7 +141,7 @@ export default function itemExpand(props: {
         id={state.expandID}
       >
         {props.categoryData.map((product, index) => (
-          <li>
+          <li key={product + index} >
             <div style={product.availability === 'UNAVAILABLE' ? { opacity: 0.5 } : {}} >
               <img src={product.imageUrl} />
               <span>
