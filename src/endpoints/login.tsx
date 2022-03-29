@@ -1,6 +1,6 @@
 import { navigate } from "gatsby";
 import Cookies from "js-cookie";
-import { saveTokens } from "../utils/funcions";
+import { saveTokens, getCurrentToken } from "../utils/funcions";
 
 const logIn = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ const logIn = (email: string, password: string) => {
   });
 };
 
-const refreshToken = (to) => {
+const refreshToken = ({ to }: { to?: string }) => {
   return new Promise(() => {
     fetch(
       `${process.env.BASE_URL}/api/auth/token/refresh`,
@@ -35,14 +35,15 @@ const refreshToken = (to) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ refresh: sessionStorage.getItem('refreshToken') ? sessionStorage.getItem('refreshToken') : Cookies.get('refreshToken') })
+        body: JSON.stringify({
+          refresh: getCurrentToken('refresh')
+        })
       }
     ).then(async response => {
       const RESPONSE: any = await response.json();
-      console.log(to);
       if (!RESPONSE.errors) {
-        saveTokens({ ...RESPONSE, remember: sessionStorage.getItem('refreshToken') ? false : true });
-        to ? navigate(to.to) : window.location.reload();
+        saveTokens({ ...RESPONSE });
+        to ? navigate(to) : window.location.reload();
       } else {
         navigate('/');
       }

@@ -1,4 +1,6 @@
+/* Modules */
 import { window, document } from 'browser-monads';
+import Cookies from 'js-cookie';
 
 const getCssCustomProperty = (property: string) => {
   const ELEMENT = document.getElementsByTagName('html')[0];
@@ -16,7 +18,13 @@ const saveTokens = (responseObj: { access: string, refresh: string, remember: bo
   }
 };
 
+const getCurrentToken = (type?: string) => {
+  if (type === 'refresh') sessionStorage.getItem('refreshToken') ? sessionStorage.getItem('refreshToken') : Cookies.get('refreshToken');
+  return sessionStorage.getItem('accessToken') ? sessionStorage.getItem('accessToken') : Cookies.get('accessToken');
+};
+
 export {
   getCssCustomProperty,
   saveTokens,
+  getCurrentToken
 };

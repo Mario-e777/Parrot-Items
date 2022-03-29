@@ -14,7 +14,7 @@ import styled from 'styled-components';
 import Brand from '../assets/svgs/brand.svg';
 
 /* Styled components */
-const ItemsContainer = styled.div`
+const ProductsContainer = styled.div`
   position: relative;
   overflow: overlay;
   
@@ -33,14 +33,13 @@ const ItemsContainer = styled.div`
     }
   }
 
-  & .privacy-terms-container {
+  & .helpl-links {
     display: flex;
     align-items: start;
     justify-content: center;
     font-size: 0.92rem;
     gap: 0.7rem;
     color: var(--white);
-    /* padding: 1rem 0; */
     
     a {
       color: var(--white);
@@ -52,7 +51,7 @@ const ItemsContainer = styled.div`
   }
 `;
 
-export default function Items() {
+export default function products() {
   const [state, setState] = useState({
     categories: [],
     filterBy: [],
@@ -62,17 +61,17 @@ export default function Items() {
   return (
 
       <GlobalLayout>
-        <ItemsContainer>
+        <ProductsContainer>
           <div className='brand-container' >
             <img src={Brand} />
           </div>
           <Products parentState={{ state, setState }} />
           <Filters options={state.categories} parentState={{ state, setState }} />
-          <p className="privacy-terms-container" >
+          <p className="helpl-links" >
             <a target='_blank' href="https://parrotsoftware.zendesk.com/hc/es" >Ayuda</a> |
             <a target='_blank' href="https://pos.parrotsoftware.io/contacto/" >Contácto</a> 
           </p>
-        </ItemsContainer>
+        </ProductsContainer>
       </GlobalLayout>
 
   )

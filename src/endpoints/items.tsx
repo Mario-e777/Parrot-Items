@@ -1,8 +1,8 @@
-/* Modules */
-import Cookies from 'js-cookie';
-
 /* Endpoints */
 import { refreshToken } from './login';
+
+/* Utils */
+import { getCurrentToken } from '../utils/funcions'
 
 const getAllItems = () => {
   return new Promise(async (resolve, reject) => {
@@ -11,7 +11,7 @@ const getAllItems = () => {
       {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('accessToken') ? sessionStorage.getItem('accessToken') : Cookies.get('accessToken')}`,
+          'Authorization': `Bearer ${getCurrentToken()}`,
           'Content-Type': 'application/json'
         },
       }
@@ -20,7 +20,7 @@ const getAllItems = () => {
       if (!RESPONSE.errors) {
         resolve(RESPONSE)
       } else {
-        await refreshToken();
+        await refreshToken({});
         reject(RESPONSE);
       }
     })
@@ -35,7 +35,7 @@ const updateItems = (status: string, itemId: string) => {
       {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('accessToken') ? sessionStorage.getItem('accessToken') : Cookies.get('accessToken')}`,
+          'Authorization': `Bearer ${getCurrentToken()}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ availability: status })
@@ -45,7 +45,7 @@ const updateItems = (status: string, itemId: string) => {
       if (!RESPONSE.errors) {
         resolve(RESPONSE)
       } else {
-        await refreshToken();
+        await refreshToken({});
         reject(RESPONSE);
       }
     })
