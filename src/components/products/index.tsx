@@ -74,6 +74,7 @@ export default function products({ parentState }) {
 
   /* Effects */
   useEffect(() => {
+    console.log('aaaaa');
     ProductsMutation.mutate();
   }, [state.reload]);
 
@@ -100,7 +101,6 @@ export default function products({ parentState }) {
           {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0)
               return <ItemExpand
-                key={categoryData + index}
                 parentState={{ state, setState }}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
@@ -108,7 +108,6 @@ export default function products({ parentState }) {
             else if (parentState.state.filterBy.length !== 0) {
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ItemExpand
-                  key={categoryData + index}
                   parentState={{ state, setState }}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
