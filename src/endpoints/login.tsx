@@ -1,5 +1,7 @@
+/* React & Gatsby stuff */
 import { navigate } from "gatsby";
-import Cookies from "js-cookie";
+
+/* Utils */
 import { saveTokens, getCurrentToken } from "../utils/funcions";
 
 const logIn = (email: string, password: string) => {

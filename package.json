@@ -8,6 +8,7 @@
     "@types/styled-components": "^5.1.24",
     "babel-plugin-styled-components": "^2.0.6",
     "browser-monads": "^1.0.0",
+    "classnames": "^2.3.1",
     "gatsby": "^4.10.1",
     "gatsby-plugin-gatsby-cloud": "^4.10.0",
     "gatsby-plugin-google-fonts": "^1.0.1",

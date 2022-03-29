@@ -59,27 +59,6 @@ const ItemExpand = animated(styled.div`
     width: 100%;
     align-items: center;
     justify-content: space-between;
-
-    & .status-switch {
-      width: 1.8rem;
-      height: 0.8rem;
-      border-radius: 100px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      background-color: var(--deep-gray);
-      cursor: pointer;
-      
-      span {
-        background-color: var(--orange);
-        border-radius: 100%;
-        display: block;
-        height: 1rem;
-        width: 1rem;
-        position: absolute;
-        box-shadow: var(--shadow-hover);
-      }
-    }
     
     div {
       gap: 1rem;
@@ -157,7 +136,7 @@ export default function itemExpand(props) {
             </div>
 
             <div>
-              <Switch parentState={{ state: props.parentState.state, setState: props.parentState.setState }} status={product.availability} itemId={product.uuid} />
+              <Switch parentState={props.parentState} status={product.availability} itemId={product.uuid} />
             </div>
           </li>
         ))}

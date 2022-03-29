@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Sr. Frontend challenge`,
@@ -46,6 +50,7 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-styled-components`,
+    'gatsby-plugin-page-transitions'
   ],
 }

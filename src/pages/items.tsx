@@ -1,6 +1,6 @@
 /* React & Gatsby stuff */
 import React, { useState } from 'react';
-/* import PageTransition from 'gatsby-plugin-page-transitions'; */
+import PageTransition from 'gatsby-plugin-page-transitions';
 
 /* Components */
 import GlobalLayout from '../components/layouts/global';
@@ -59,7 +59,7 @@ export default function products() {
   });
 
   return (
-
+    <PageTransition>
       <GlobalLayout>
         <ProductsContainer>
           <div className='brand-container' >
@@ -69,10 +69,10 @@ export default function products() {
           <Filters options={state.categories} parentState={{ state, setState }} />
           <p className="helpl-links" >
             <a target='_blank' href="https://parrotsoftware.zendesk.com/hc/es" >Ayuda</a> |
-            <a target='_blank' href="https://pos.parrotsoftware.io/contacto/" >Contácto</a> 
+            <a target='_blank' href="https://pos.parrotsoftware.io/contacto/" >Contácto</a>
           </p>
         </ProductsContainer>
       </GlobalLayout>
-
+    </PageTransition>
   )
 };
