@@ -46,8 +46,6 @@ const refreshToken = ({ to }: { to?: string }) => {
       if (!RESPONSE.errors) {
         to ? navigate(to) : window.location.reload();
         saveTokens({ ...RESPONSE });
-      } else {
-        navigate('/');
       }
     })
       .catch(error => console.error(error));
