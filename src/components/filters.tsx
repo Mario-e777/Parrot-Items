@@ -1,5 +1,5 @@
 /* React & Gatsby stuff */
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
 /* Modules */
 import styled from 'styled-components';
