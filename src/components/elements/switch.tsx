@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import useSwitch from '../../animations/useSwitch';
 
 /* Endpoints & utils */
-import { updateItems } from '../../endpoints/items';
+import { updateItems } from '../../endpoints/products';
 
 /* Styled components */
 const SwitchContainer = styled.div`
@@ -33,7 +33,7 @@ const SwitchContainer = styled.div`
   }
 `;
  
-export default function Switch({ itemId, status, parentState }) {
+export default function Switch({ itemId, status, parentCallback }) {
   const [state, setState] = useState({
     statusOn: status === 'AVAILABLE' ? true : false,
     loaded: false,
@@ -44,7 +44,7 @@ export default function Switch({ itemId, status, parentState }) {
     setIsSwitchOn(!state.statusOn);
     updateItems(state.statusOn ? 'UNAVAILABLE' : 'AVAILABLE', itemId);
     setState({ ...state, statusOn: !state.statusOn });
-    parentState.setState({ ...parentState.state, reload: !parentState.state.reload });
+    parentCallback.mutate();
   };
 
   return (

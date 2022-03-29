@@ -51,14 +51,8 @@ const InputContainer = styled.label<{ outline: boolean }>`
   }
 
   ${props => props.outline && css`
-    input {
-      border: 1px solid var(--black);
-      /* box-shadow: unset; */
-      /* border-radius: unset; */
-    }
-    p {
-      margin-bottom: unset;
-    }
+    input { border: 1px solid var(--black); }
+    p { margin-bottom: unset; }
   `}
 `;
 

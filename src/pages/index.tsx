@@ -48,8 +48,8 @@ const LoginContainer = styled.div`
 const IndexPage = () => {
   return (
     <PageTransition>
+      <Seo title="Log in" />
       <GlobalLayout>
-        <Seo title="Login" />
         <LoginContainer>
           <LoginForm />
           <GalleryContainer />

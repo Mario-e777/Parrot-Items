@@ -5,7 +5,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 /* Components */
-import Input from '../components/elements/input';
 import FilterButton from '../components/elements/filterButton';
 
 /* Styled components */
@@ -66,7 +65,7 @@ const GalleryContainer = styled.div`
   }
 `;
 
-export default function Filters({ options, parentState }) {
+export default function Filters({ options, parentState }: { options: Array<string>, parentState: Object }) {
   return (
     <GalleryContainer>
       <div className='filters-title-input-container' >
@@ -76,7 +75,9 @@ export default function Filters({ options, parentState }) {
         <p className='filters-description' >Filtrar los productos por categoria.</p>
       </div>
       <div className='filters-container' >
-        {options.map((option, index) => <FilterButton key={option + index} parentState={parentState} option={option} />)}
+        {options.map((option, index) => {
+          return <FilterButton key={option + index} parentState={parentState} option={option} />
+        })}
       </div>
     </GalleryContainer>
   )

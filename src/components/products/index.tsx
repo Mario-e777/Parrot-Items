@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ItemExpand from './itemExpand';
+import ProductExpand from './productExpand';
 
 /* Components */
 import NotificationSender from '../notifications/sender';
@@ -12,10 +12,10 @@ import { useMutation } from 'react-query';
 import { NotificationContext } from '../layouts/global';
 
 /* Endpoints & utils */
-import { getAllItems } from '../../endpoints/items';
+import { getAllItems } from '../../endpoints/products';
 
 /* Styled components */
-const ItemsContainer = styled.div`
+const ProductsContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -75,12 +75,13 @@ export default function products({ parentState }) {
   /* Effects */
   useEffect(() => {
     ProductsMutation.mutate();
-  }, [state.reload]);
+  }, []);
 
   useEffect(() => {
     const notificationSender = new NotificationSender(setNotification);
     if (ProductsMutation.data) {
       const CATEGORIES = {};
+      setState({ ...state, productsToShow: {} });
 
       /* Getting categories to filter */
       ProductsMutation.data.results.forEach(product => {
@@ -96,22 +97,24 @@ export default function products({ parentState }) {
   }, [ProductsMutation.data, ProductsMutation.isError]);
 
   return (
-    <ItemsContainer>
+    <ProductsContainer>
       <div className='items-container' >
         <h2>La Casa De Toño - Items status</h2>
         <div className='items' >
-          {Object.keys(state.productsToShow).map((categoryData) => {
+          {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0) { /* Not category selected */
-              return <ItemExpand
-                parentState={{ state, setState }}
+              return <ProductExpand
+                key={categoryData + index}
+                parentCallback={ProductsMutation}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
               />
             }
             else if (parentState.state.filterBy.length !== 0) { /* Fillter by categories */
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
-                ? <ItemExpand
-                  parentState={{ state, setState }}
+                ? <ProductExpand
+                  key={categoryData + index}
+                  parentCallback={ProductsMutation}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
                 />
@@ -120,6 +123,6 @@ export default function products({ parentState }) {
           })}
         </div>
       </div>
-    </ItemsContainer>
+    </ProductsContainer>
   )
 }

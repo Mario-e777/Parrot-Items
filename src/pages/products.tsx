@@ -6,6 +6,7 @@ import PageTransition from 'gatsby-plugin-page-transitions';
 import GlobalLayout from '../components/layouts/global';
 import Filters from '../components/filters';
 import Products from '../components/products';
+import Seo from "../components/seo";
 
 /* Modules */
 import styled from 'styled-components';
@@ -96,6 +97,7 @@ export default function products() {
 
   return (
     <PageTransition>
+      <Seo title="Productos" />
       <GlobalLayout>
         <ProductsContainer>
           <div className='brand-container' >

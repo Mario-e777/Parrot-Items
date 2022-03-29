@@ -16,7 +16,7 @@ import useRotate from '../../animations/useRotate';
 /* Assets */
 import expandArrow from '../../assets/images/expandArrow.png';
 
-const ItemExpand = animated(styled.div`
+const ProductExpand = animated(styled.div`
   background-color: var(--white);
   border-bottom: 1px solid var(--gray);
   overflow: hidden;
@@ -52,6 +52,7 @@ const ItemExpand = animated(styled.div`
     gap: 1rem;
     padding: 1.5rem 1.28rem;
   }
+
   li {
     padding: 0 0.4rem;
     font-size: 0.94rem;
@@ -92,37 +93,44 @@ const ItemExpand = animated(styled.div`
   }
 `);
 
-export default function itemExpand(props) {
+export default function itemExpand(props: {
+  name: string,
+  categoryData: Array<any>,
+  parentCallback: Function
+}) {
+  /* Hooks stuff */
+  const [fillerStyle, setIsExpanded] = useExpand();
+  const [rotateStyle, setIsRotated] = useRotate();
   const [state, setState] = useState({
     isExpanded: false,
     statusIsOn: false,
     elementID: uniqid(),
     expandID: uniqid(),
   });
-  const [fillerStyle, setIsExpanded] = useExpand();
-  const [rotateStyle, setIsRotated] = useRotate();
 
-  const expandItem = () => {
+  /* Functions */
+  const expandProduct = () => {
     setState({ ...state, isExpanded: !state.isExpanded });
   };
 
+  /* Effects */
   useEffect(() => {
-    const EXPAND_ID = document.getElementById(state.expandID);
-    const ELEMENT_ID = document.getElementById(state.elementID);
+    const EXPAND_HEIGHT = document.getElementById(state.expandID)?.getBoundingClientRect().height;
+    const ELEMENT_HEIGHT = document.getElementById(state.elementID)?.getBoundingClientRect().height;
     const BASE_FONT_SIZE = parseInt(window.getComputedStyle(document.getElementsByTagName('html')[0], null).getPropertyValue('font-size').replace('px', ''))
 
     setIsRotated(!state.isExpanded);
     setIsExpanded({
-      listHeihg: `${(EXPAND_ID?.getBoundingClientRect().height + ELEMENT_ID?.getBoundingClientRect().height) / BASE_FONT_SIZE}rem`,
-      height: `${ELEMENT_ID?.getBoundingClientRect().height / BASE_FONT_SIZE}rem`,
+      listHeihg: `${(EXPAND_HEIGHT + ELEMENT_HEIGHT) / BASE_FONT_SIZE}rem`,
+      height: `${ELEMENT_HEIGHT / BASE_FONT_SIZE}rem`,
       isOpen: state.isExpanded
     });
   }, [state.isExpanded]);
 
 
   return (
-    <ItemExpand style={{ ...fillerStyle }} >
-      <div id={state.elementID} onClick={expandItem} className='title-button' >
+    <ProductExpand style={{ ...fillerStyle }} >
+      <div id={state.elementID} onClick={expandProduct} className='title-button' >
         <p>{props.name}</p>
         <div className='expand-button' >
           <span>({props.categoryData.length})</span>
@@ -131,7 +139,6 @@ export default function itemExpand(props) {
       </div>
       <ul
         id={state.expandID}
-        className='open'
       >
         {props.categoryData.map((product, index) => (
           <li key={product + index} >
@@ -145,11 +152,15 @@ export default function itemExpand(props) {
             </div>
 
             <div>
-              <Switch parentState={props.parentState} status={product.availability} itemId={product.uuid} />
+              <Switch
+                parentCallback={props.parentCallback}
+                status={product.availability}
+                itemId={product.uuid}
+              />
             </div>
           </li>
         ))}
       </ul>
-    </ItemExpand>
+    </ProductExpand>
   )
 };

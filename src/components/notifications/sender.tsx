@@ -20,7 +20,11 @@ export default class Sender {
     this.snackTTL = 4000;
   };
 
-  send({ isSuccess, isError, message }) {
+  send({ isSuccess, isError, message }: {
+    isSuccess: boolean,
+    isError: boolean,
+    message: string
+  }) {
     setTimeout(() => {
       /* Remove element */
       const SNACK_ELEMENT = document.getElementById(`${this.snackID}`);
