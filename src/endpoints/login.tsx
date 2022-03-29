@@ -7,7 +7,7 @@ import { saveTokens, getCurrentToken } from "../utils/funcions";
 const logIn = (email: string, password: string) => {
   return new Promise((resolve, reject) => {
     fetch(
-      `${process.env.GATSBY_BASE_URL}/api/auth/token`,
+      `https://api-staging.parrot.rest/api/auth/token`,
       {
         method: 'POST',
         headers: {
@@ -31,7 +31,7 @@ const logIn = (email: string, password: string) => {
 const refreshToken = ({ to }: { to?: string }) => {
   return new Promise(() => {
     fetch(
-      `${process.env.GATSBY_BASE_URL}/api/auth/token/refresh`,
+      `https://api-staging.parrot.rest/api/auth/token/refresh`,
       {
         method: 'POST',
         headers: {

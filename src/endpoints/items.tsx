@@ -7,7 +7,7 @@ import { getCurrentToken } from '../utils/funcions'
 const getAllItems = () => {
   return new Promise(async (resolve, reject) => {
     fetch(
-      `${process.env.GATSBY_BASE_URL}/api/v1/products/?store=e7f46731-1654-4ba3-be83-408ac5255838`,
+      `https://api-staging.parrot.rest/api/v1/products/?store=e7f46731-1654-4ba3-be83-408ac5255838`,
       {
         method: 'GET',
         headers: {
@@ -31,7 +31,7 @@ const getAllItems = () => {
 const updateItems = (status: string, itemId: string) => {
   return new Promise(async (resolve, reject) => {
     fetch(
-      `${process.env.GATSBY_BASE_URL}/api/v1/products/${itemId}/availability`,
+      `https://api-staging.parrot.rest/api/v1/products/${itemId}/availability`,
       {
         method: 'PUT',
         headers: {
