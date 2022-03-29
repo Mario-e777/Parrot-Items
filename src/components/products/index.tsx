@@ -68,17 +68,19 @@ export default function products({ parentState }) {
   const { setNotification } = useContext(NotificationContext)
   const ProductsMutation: any = useMutation(() => getAllItems());
   const [state, setState] = useState({
-    productsToShow: {}
+    productsToShow: {},
   });
 
-  /* Effects */
-  useEffect(() => {
-    ProductsMutation.mutate();
-  }, []);
-
+  /* Functions */
   const handleMutate = () => {
     ProductsMutation.mutate();
   };
+  
+  /* Effects */
+  useEffect(() => {
+    handleMutate();
+  }, []);
+
 
   useEffect(() => {
     const notificationSender = new NotificationSender(setNotification);
@@ -97,7 +99,7 @@ export default function products({ parentState }) {
       setState({ ...state, productsToShow: CATEGORIES });
     };
     ProductsMutation.isError && notificationSender.send({ ...ProductsMutation, message: 'Error al obtener productos' });
-  }, [ProductsMutation]);
+  }, [ProductsMutation.data, ProductsMutation.isError]);
 
   return (
     <ProductsContainer>

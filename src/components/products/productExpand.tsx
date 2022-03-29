@@ -125,7 +125,7 @@ export default function itemExpand(props: {
       height: `${ELEMENT_HEIGHT / BASE_FONT_SIZE}rem`,
       isOpen: state.isExpanded
     });
-  }, [state.isExpanded]);
+  }, [state.isExpanded, props]);
 
 
   return (
