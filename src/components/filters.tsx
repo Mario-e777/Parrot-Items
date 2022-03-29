@@ -31,7 +31,7 @@ const GalleryContainer = styled.div`
   }
   & .filters-title-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: center;
     width: 100%;
     justify-content: space-between;
@@ -39,7 +39,7 @@ const GalleryContainer = styled.div`
   & .filters-container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     grid-template-rows: auto;
     gap: 1rem;
   }
@@ -51,6 +51,19 @@ const GalleryContainer = styled.div`
   & .filters-description {
     font-size: 1.02rem;
   }
+
+  @media screen and (max-width: 940px) {
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    & .filters-title-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  @media screen and (max-width: 780px) {
+    display: none;
+  }
 `;
 
 export default function Filters({ options, parentState }) {
@@ -59,7 +72,12 @@ export default function Filters({ options, parentState }) {
       <div className='filters-title-input-container' >
         <div className='filters-title-container' >
           <p className='filters-title' >Filtros</p>
-          <Input onChange={event =>  parentState.setState({ ...parentState.state, textToSearch: event.target.value })} outline type='text' placeholder='Buscar producto' />
+          <Input
+            onChange={event => parentState.setState({ ...parentState.state, textToSearch: event.target.value })}
+            type='text'
+            placeholder='Buscar producto'
+            outline
+          />
         </div>
         <p className='filters-description' >Puedes filtrar los productos por categoria o buscar por coincidencia.</p>
       </div>

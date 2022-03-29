@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSpring } from 'react-spring';
 
 function useExpand() {
-  const [isExpanded, setIsExpanded] = useState({ height: '0px', listHeihg: '0px', isOpen: false });
+  const [isExpanded, setIsExpanded] = useState({ height: '0rem', listHeihg: '0rem', isOpen: false });
   const fillerStyle = useSpring({
     config: {
       mass: 1,

@@ -17,6 +17,11 @@ import Brand from '../assets/svgs/brand.svg';
 const ProductsContainer = styled.div`
   position: relative;
   overflow: overlay;
+  background-color: var(--orange);
+  display: grid;
+  grid-template-columns: minmax(24rem, 0.8fr) 1fr;
+  grid-template-rows: 1fr 0.1fr;
+  row-gap: 1.5rem;
   
   & .brand-container {
     display: flex;
@@ -40,6 +45,8 @@ const ProductsContainer = styled.div`
     font-size: 0.92rem;
     gap: 0.7rem;
     color: var(--white);
+    grid-column: 1/2;
+    grid-row: 2/3;
     
     a {
       color: var(--white);
@@ -48,6 +55,14 @@ const ProductsContainer = styled.div`
       text-align: center;
       &:hover { text-decoration-line: underline; }
     }
+  }
+
+  @media screen and (max-width: 780px) {
+    align-self: center;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    padding: 2rem;
   }
 `;
 

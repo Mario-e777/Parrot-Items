@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ItemExpand from '../../components/itemExpand';
+import ItemExpand from './itemExpand';
 
 /* Components */
 import NotificationSender from '../notifications/sender';
@@ -21,6 +21,7 @@ const ItemsContainer = styled.div`
   display: flex;
   align-items: start;
   justify-content: center;
+  padding: 0 1rem;
   padding-top: 5.2rem;
   
   & .items-container {
@@ -55,6 +56,10 @@ const ItemsContainer = styled.div`
       font-weight: 400;
       font-size: 1rem;
     }
+  }
+
+  @media screen and (max-width: 780px){
+    padding-top: 3rem; 
   }
 `;
 

@@ -51,7 +51,6 @@ const InputContainer = styled.label<{ outline: boolean }>`
   }
 
   ${props => props.outline && css`
-    width: 22rem;
     input {
       border: 1px solid var(--black);
       /* box-shadow: unset; */
