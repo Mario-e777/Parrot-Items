@@ -104,7 +104,6 @@ export default function products({ parentState }) {
           {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0) { /* Not category selected */
               return <ProductExpand
-                key={categoryData + index}
                 parentCallback={ProductsMutation}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
@@ -113,7 +112,6 @@ export default function products({ parentState }) {
             else if (parentState.state.filterBy.length !== 0) { /* Fillter by categories */
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ProductExpand
-                  key={categoryData + index}
                   parentCallback={ProductsMutation}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
