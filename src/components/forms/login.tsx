@@ -6,6 +6,7 @@ import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import { SpinnerCircularFixed } from "spinners-react";
 import { useMutation } from 'react-query';
+import Cookies from 'js-cookie';
 
 /* Components */
 import Button from '../elements/button';
@@ -83,7 +84,8 @@ export default function Login() {
   }, [LogInMutation.isSuccess, LogInMutation.isError]);
 
   useEffect(() => {
-    refreshToken({ to: '/products' });
+    (Cookies.get('refreshToken') || sessionStorage.getItem('refreshToken'))
+      && refreshToken({ to: '/products' });
   }, []);
 
   return (

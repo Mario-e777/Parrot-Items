@@ -44,8 +44,8 @@ const refreshToken = ({ to }: { to?: string }) => {
     ).then(async response => {
       const RESPONSE: any = await response.json();
       if (!RESPONSE.errors) {
-        saveTokens({ ...RESPONSE });
         to ? navigate(to) : window.location.reload();
+        saveTokens({ ...RESPONSE });
       } else {
         navigate('/');
       }

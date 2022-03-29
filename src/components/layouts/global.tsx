@@ -43,7 +43,7 @@ const GlobalLayout = ({ children }:
   const [notification, setNotification] = useState<JSX.Element>();
 
   useEffect(() => {
-    if (!Cookies.get('accessToken') && !sessionStorage.getItem('accessToken')) {
+    if (!sessionStorage.getItem('accessToken') && !Cookies.get('accessToken')) {
       navigate('/');
     } else {
       navigate('/products');
