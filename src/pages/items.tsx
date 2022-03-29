@@ -13,6 +13,9 @@ import styled from 'styled-components';
 /* Assets */
 import Brand from '../assets/svgs/brand.svg';
 
+/* Modules */
+import { destroyTokens } from '../utils/funcions';
+
 /* Styled components */
 const ProductsContainer = styled.div`
   position: relative;
@@ -53,7 +56,26 @@ const ProductsContainer = styled.div`
       cursor: pointer;
       padding: 0 0.5rem;
       text-align: center;
-      &:hover { text-decoration-line: underline; }
+    }
+  }
+
+  & .close-sesion {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    font-size: 0.92rem;
+    gap: 0.7rem;
+    color: var(--white);
+    
+    button {
+      text-decoration-line: underline;
+      width: fit-content;
+      color: var(--white);
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      border: none;
+      text-align: center;
     }
   }
 
@@ -84,6 +106,9 @@ export default function products() {
           <p className="helpl-links" >
             <a target='_blank' href="https://parrotsoftware.zendesk.com/hc/es" >Ayuda</a> |
             <a target='_blank' href="https://pos.parrotsoftware.io/contacto/" >Contácto</a>
+          </p>
+          <p className="close-sesion" >
+            <button onClick={destroyTokens} >Cerrar sesión</button>
           </p>
         </ProductsContainer>
       </GlobalLayout>

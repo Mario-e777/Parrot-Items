@@ -1,3 +1,6 @@
+/* React & Gatsby stuff */
+import { navigate } from 'gatsby';
+
 /* Modules */
 import { window, document } from 'browser-monads';
 import Cookies from 'js-cookie';
@@ -18,12 +21,21 @@ const saveTokens = (responseObj: { access: string, refresh: string, remember: bo
   }
 };
 
+const destroyTokens = () => {
+  Cookies.remove('accessToken')
+  Cookies.remove('refreshToken')
+  sessionStorage.removeItem('accessToken');
+  sessionStorage.removeItem('refreshToken');
+  navigate('/');
+};
+
 const getCurrentToken = (type?: string) => {
   if (type === 'refresh') sessionStorage.getItem('refreshToken') ? sessionStorage.getItem('refreshToken') : Cookies.get('refreshToken');
   return sessionStorage.getItem('accessToken') ? sessionStorage.getItem('accessToken') : Cookies.get('accessToken');
 };
 
 export {
+  destroyTokens,
   getCssCustomProperty,
   saveTokens,
   getCurrentToken

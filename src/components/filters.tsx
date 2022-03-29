@@ -76,7 +76,7 @@ export default function Filters({ options, parentState }) {
         <p className='filters-description' >Filtrar los productos por categoria.</p>
       </div>
       <div className='filters-container' >
-        {options.map(option => <FilterButton parentState={parentState} option={option} />)}
+        {options.map((option, index) => <FilterButton key={option + index} parentState={parentState} option={option} />)}
       </div>
     </GalleryContainer>
   )

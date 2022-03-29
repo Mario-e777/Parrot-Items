@@ -38,8 +38,13 @@ export default function filterButton({ parentState, option }) {
   const [filterActive, setFilterActive] = useState(false);
   return (
     <FilterButton onClick={() => {
-      parentState.state.filterBy[parentState.state.filterBy.indexOf(option)] ? parentState.setState({ ...parentState.state, filterBy: parentState.state.filterBy.filter(opt => opt !== option) }) : parentState.setState({ ...parentState.state, filterBy: [...parentState.state.filterBy, option] });
       setFilterActive(!filterActive)
-    }} ><span className={`selected-indicator ${filterActive && 'active'}`} /> <p>{option}</p></FilterButton>
+      parentState.state.filterBy[parentState.state.filterBy.indexOf(option)]
+        ? parentState.setState({ ...parentState.state, filterBy: parentState.state.filterBy.filter(opt => opt !== option) })
+        : parentState.setState({ ...parentState.state, filterBy: [...parentState.state.filterBy, option] });
+    }} >
+      <span className={`selected-indicator ${filterActive && 'active'}`} />
+      <p>{option}</p>
+    </FilterButton>
   )
 }

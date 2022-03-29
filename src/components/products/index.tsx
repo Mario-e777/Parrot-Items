@@ -97,12 +97,22 @@ export default function products({ parentState }) {
       <div className='items-container' >
         <h2>La Casa De Toño - Items status</h2>
         <div className='items' >
-          {Object.keys(state.productsToShow).map(categoryData => {
+          {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0)
-              return <ItemExpand parentState={{ state, setState }} name={categoryData} categoryData={state.productsToShow[categoryData]} />
+              return <ItemExpand
+                key={categoryData + index}
+                parentState={{ state, setState }}
+                name={categoryData}
+                categoryData={state.productsToShow[categoryData]}
+              />
             else if (parentState.state.filterBy.length !== 0) {
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
-                ? <ItemExpand parentState={{ state, setState }} name={categoryData} categoryData={state.productsToShow[categoryData]} />
+                ? <ItemExpand
+                  key={categoryData + index}
+                  parentState={{ state, setState }}
+                  name={categoryData}
+                  categoryData={state.productsToShow[categoryData]}
+                />
                 : <></>
             }
           })}
