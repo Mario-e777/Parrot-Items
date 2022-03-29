@@ -125,8 +125,7 @@ export default function itemExpand(props: {
       height: `${ELEMENT_HEIGHT / BASE_FONT_SIZE}rem`,
       isOpen: state.isExpanded
     });
-  }, [state.isExpanded, props]);
-
+  }, [state.isExpanded, props, props.parentCallback]);
 
   return (
     <ProductExpand style={{ ...fillerStyle }} >
@@ -140,26 +139,28 @@ export default function itemExpand(props: {
       <ul
         id={state.expandID}
       >
-        {props.categoryData.map((product, index) => (
-          <li key={product + index} >
-            <div style={product.availability === 'UNAVAILABLE' ? { opacity: 0.5 } : {}} >
-              <img src={product.imageUrl} />
-              <span>
-                <p className='product-name' >{product.name}</p>
-                <p className='product-description'>{product.description}</p>
-                <p className='product-price' >${product.price}</p>
-              </span>
-            </div>
+        {props.categoryData.map((product, index) => {
+          return (
+            <li key={product + index} >
+              <div style={product.availability === 'UNAVAILABLE' ? { opacity: 0.5 } : {}} >
+                <img src={product.imageUrl} />
+                <span>
+                  <p className='product-name' >{product.name}</p>
+                  <p className='product-description'>{product.description}</p>
+                  <p className='product-price' >${product.price}</p>
+                </span>
+              </div>
 
-            <div>
-              <Switch
-                parentCallback={props.parentCallback}
-                status={product.availability}
-                itemId={product.uuid}
-              />
-            </div>
-          </li>
-        ))}
+              <div>
+                <Switch
+                  parentCallback={props.parentCallback}
+                  status={product.availability}
+                  itemId={product.uuid}
+                />
+              </div>
+            </li>
+          )
+        })}
       </ul>
     </ProductExpand>
   )
