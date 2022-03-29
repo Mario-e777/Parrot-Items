@@ -107,9 +107,24 @@ export default function itemExpand(props) {
   };
 
   useEffect(() => {
+    const EXPAND_ID = document.getElementById(state.expandID);
+    const ELEMENT_ID = document.getElementById(state.elementID);
+
     setIsRotated(!state.isExpanded);
-    setIsExpanded({ listHeihg: `${document.getElementById(state.expandID)?.getBoundingClientRect().height + document.getElementById(state.elementID)?.getBoundingClientRect().height}px`, height: `${document.getElementById(state.elementID)?.getBoundingClientRect().height}px`, isOpen: state.isExpanded });
+    setIsExpanded({
+      listHeihg: `${EXPAND_ID?.getBoundingClientRect().height + ELEMENT_ID?.getBoundingClientRect().height}px`,
+      height: `${ELEMENT_ID?.getBoundingClientRect().height}px`,
+      isOpen: state.isExpanded
+    });
   }, [state.isExpanded]);
+
+  window.onresize(() => {
+    setIsExpanded({
+      listHeihg: `${EXPAND_ID?.getBoundingClientRect().height + ELEMENT_ID?.getBoundingClientRect().height}px`,
+      height: `${ELEMENT_ID?.getBoundingClientRect().height}px`,
+      isOpen: state.isExpanded
+    });
+  });
 
   return (
     <ItemExpand style={{ ...fillerStyle }} >
