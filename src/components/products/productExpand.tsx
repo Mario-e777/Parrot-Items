@@ -52,45 +52,6 @@ const ProductExpand = animated(styled.div`
     gap: 1rem;
     padding: 1.5rem 1.28rem;
   }
-
-  li {
-    padding: 0 0.4rem;
-    font-size: 0.94rem;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    
-    div {
-      gap: 1rem;
-      display: flex;
-      display: flex;
-
-      span {
-        .product-name {
-          font-weight: bold;
-        }
-        .product-description {
-          font-size: 0.88rem;
-          margin-bottom: 0.4rem;
-          padding: 0.2rem 0.6rem 0 0;
-        }
-        .product-price {
-          font-weight: bold;
-        }
-      }
-    }
-
-    img {
-      width: 3rem;
-      height: 3rem;
-      border: 1px solid var(--black);
-      box-shadow: var(--shadow-normal);
-      border-radius: 5px;
-      background-color: var(--white);
-      padding: 0.2rem;
-    }
-  }
 `);
 
 export default function itemExpand(props: {

@@ -21,7 +21,6 @@ const ProductsContainer = styled.div`
   display: flex;
   align-items: start;
   justify-content: center;
-  padding: 0 1rem;
   padding-top: 5.2rem;
   
   & .items-container {
@@ -72,19 +71,18 @@ export default function products({ parentState }) {
     productsToShow: {},
     storeName: ''
   });
-  
+
   /* Effects */
   useEffect(() => {
     ProductsMutation.mutate();
     MyStoreMutation.mutate();
   }, []);
 
-  useEffect(() => {
-    MyStoreMutation.data && setState({ ...state, storeName: MyStoreMutation.data.result.stores[0].name});
+  useEffect(() => { /* Store effect */
+    MyStoreMutation.data && setState({ ...state, storeName: MyStoreMutation.data.result.stores[0].name });
   }, [MyStoreMutation.isSuccess, MyStoreMutation.data]);
 
-
-  useEffect(() => {
+  useEffect(() => { /* Products effect */
     const notificationSender = new NotificationSender(setNotification);
     if (ProductsMutation.data) {
       const CATEGORIES = {};
@@ -100,7 +98,13 @@ export default function products({ parentState }) {
       parentState.setState({ ...parentState.state, categories: Object.keys(CATEGORIES) });
       setState({ ...state, productsToShow: CATEGORIES });
     };
-    ProductsMutation.isError && notificationSender.send({ ...ProductsMutation, message: 'Error al obtener productos' });
+
+    /* Handle error */
+    ProductsMutation.isError
+      && notificationSender.send({
+        ...ProductsMutation,
+        message: 'Error al obtener productos'
+      });
   }, [ProductsMutation.data, ProductsMutation.isError]);
 
   return (

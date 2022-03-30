@@ -23,7 +23,7 @@ const ProductsContainer = styled.div`
   overflow: overlay;
   background-color: var(--orange);
   display: grid;
-  grid-template-columns: minmax(24rem, 0.8fr) 1fr;
+  grid-template-columns: minmax(29.44rem, 0.8fr) 1fr;
   grid-template-rows: 1fr 0.1fr;
   row-gap: 1.5rem;
   
@@ -82,10 +82,10 @@ const ProductsContainer = styled.div`
 
   @media screen and (max-width: 780px) {
     align-self: center;
-    height: fit-content;
+    height: 100vh;
     grid-template-columns: 1fr;
     grid-template-rows: min-content;
-    padding: 2rem;
+    padding: 2rem 1.5rem 1.5rem;
   }
 `;
 

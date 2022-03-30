@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+/* React & Gatsby stuff */
+import React, { useState } from 'react';
 
+/* Modules */
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
-const FilterButton = styled.div`
+/* Animation hooks */
+import useShadow from '../../animations/useShadow';
+
+const FilterButton = animated(styled.div`
   font-size: 0.92rem;
   box-shadow: var(--shadow-normal);
   border: 1px solid var(--black);
@@ -10,13 +16,10 @@ const FilterButton = styled.div`
   display: flex;
   font-weight: bold;
   align-items: center;
-  transition-duration: 333ms;
   cursor: pointer;
   overflow: hidden;
   width: 100%;
-  &:hover {
-    background-color: var(--gray);
-  }
+
   p {
     width: 100%;
     text-align: center;
@@ -32,17 +35,22 @@ const FilterButton = styled.div`
     
   }
   .active { opacity: 1 }
-`;
+`);
 
 export default function filterButton({ parentState, option }) {
   const [filterActive, setFilterActive] = useState(false);
+  const [shadowStyle, setIsHovered] = useShadow();
   return (
-    <FilterButton onClick={() => {
-      setFilterActive(!filterActive)
-      parentState.state.filterBy[parentState.state.filterBy.indexOf(option)]
-        ? parentState.setState({ ...parentState.state, filterBy: parentState.state.filterBy.filter(opt => opt !== option) })
-        : parentState.setState({ ...parentState.state, filterBy: [...parentState.state.filterBy, option] });
-    }} >
+    <FilterButton
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ ...shadowStyle }}
+      onClick={() => {
+        setFilterActive(!filterActive)
+        parentState.state.filterBy[parentState.state.filterBy.indexOf(option)]
+          ? parentState.setState({ ...parentState.state, filterBy: parentState.state.filterBy.filter(opt => opt !== option) })
+          : parentState.setState({ ...parentState.state, filterBy: [...parentState.state.filterBy, option] });
+      }}>
       <span className={`selected-indicator ${filterActive && 'active'}`} />
       <p>{option}</p>
     </FilterButton>

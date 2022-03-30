@@ -31,7 +31,7 @@ const InputContainer = styled.label<{ outline: boolean }>`
     color: var(--white);
     span { cursor: pointer; }
   }
-  button {
+  .reveal-password {
     padding: 0;
     width: fit-content;
     height: fit-content;

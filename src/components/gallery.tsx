@@ -120,6 +120,7 @@ export default function Gallery() {
     setTimeout(() => {
       document.getElementById(`benefit-image-${state.selectedImage}`)?.classList.remove('active');
       document.getElementById(`bullet-${state.selectedImage}`)?.classList.remove('active');
+
       setState({
         ...state,
         selectedImage: state.selectedImage !== state.images.length - 1
@@ -138,11 +139,7 @@ export default function Gallery() {
         {state.images}
       </div>
       <div className='bullets-container' >
-        <span id='bullet-0' />
-        <span id='bullet-1' />
-        <span id='bullet-2' />
-        <span id='bullet-3' />
-        <span id='bullet-4' />
+        {state.images.map((img, index) => <span id={`bullet-${index}`} />)}
       </div>
     </GalleryContainer>
   )

@@ -13,24 +13,66 @@ import { updateItems } from '../../endpoints/products';
 
 /* Styled components */
 const SwitchContainer = styled.div`
-  width: 1.8rem;
-  height: 0.8rem;
-  border-radius: 100px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-color: var(--deep-gray);
-  cursor: pointer;
+    padding: 0 0.4rem;
+    font-size: 0.94rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    
+    .product-container {
+      gap: 1rem;
+      display: flex;
+      display: flex;
+
+      .product-data-container {
+        .product-name {
+          font-weight: bold;
+        }
+        .product-description {
+          font-size: 0.88rem;
+          margin-bottom: 0.4rem;
+          padding: 0.2rem 0.6rem 0 0;
+        }
+        .product-price {
+          font-weight: bold;
+        }
+      }
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        min-width: 3rem;
+        min-height: 3rem;
+        border: 1px solid var(--black);
+        box-shadow: var(--shadow-normal);
+        border-radius: 5px;
+        background-color: var(--white);
+        padding: 0.2rem;
+        object-fit: cover;
+      }
+    }
+
+    .status-switch {
+      width: 1.8rem;
+      height: 0.8rem;
+      border-radius: 100px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: var(--deep-gray);
+      cursor: pointer;
   
-  span {
-    background-color: var(--orange);
-    border-radius: 100%;
-    display: block;
-    height: 1rem;
-    width: 1rem;
-    position: absolute;
-    box-shadow: var(--shadow-hover);
-  }
+      span {
+        background-color: var(--orange);
+        border-radius: 100%;
+        display: block;
+        height: 1rem;
+        width: 1rem;
+        position: absolute;
+        box-shadow: var(--shadow-hover);
+      }
+    }
 `;
 
 export default function Switch({ itemId, status, product, index }) {
@@ -46,10 +88,10 @@ export default function Switch({ itemId, status, product, index }) {
   };
 
   return (
-    <li key={product + index} >
-      <div style={!state.statusOn ? { opacity: 0.5 } : {}} >
+    <SwitchContainer key={product + index} >
+      <div className='product-container' style={!state.statusOn ? { opacity: 0.5 } : {}} >
         <img alt='Product' src={product.imageUrl} />
-        <span>
+        <span className='product-data-container' >
           <p className='product-name' >{product.name}</p>
           <p className='product-description'>{product.description}</p>
           <p className='product-price' >${product.price}</p>
@@ -57,10 +99,10 @@ export default function Switch({ itemId, status, product, index }) {
       </div>
 
       <div>
-        <SwitchContainer onClick={() => switchStatus()} className='status-switch' >
+        <div onClick={() => switchStatus()} className='status-switch' >
           <animated.span style={{ ...switchStyle }} />
-        </SwitchContainer>
+        </div>
       </div>
-    </li>
+    </SwitchContainer>
   )
 };
