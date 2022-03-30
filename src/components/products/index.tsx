@@ -72,15 +72,10 @@ export default function products({ parentState }) {
     productsToShow: {},
     storeName: ''
   });
-
-  /* Functions */
-  const handleProducttsMutate = () => {
-    ProductsMutation.mutate();
-  };
-
+  
   /* Effects */
   useEffect(() => {
-    handleProducttsMutate();
+    ProductsMutation.mutate();
     MyStoreMutation.mutate();
   }, []);
 
@@ -116,7 +111,6 @@ export default function products({ parentState }) {
           {Object.keys(state.productsToShow).map((categoryData, index) => {
             if (parentState.state.filterBy.length === 0) { /* Not category selected */
               return <ProductExpand
-                parentCallback={handleProducttsMutate}
                 name={categoryData}
                 categoryData={state.productsToShow[categoryData]}
               />
@@ -124,7 +118,6 @@ export default function products({ parentState }) {
             else if (parentState.state.filterBy.length !== 0) { /* Fillter by categories */
               return parentState.state.filterBy[parentState.state.filterBy.indexOf(categoryData)]
                 ? <ProductExpand
-                  parentCallback={handleProducttsMutate}
                   name={categoryData}
                   categoryData={state.productsToShow[categoryData]}
                 />

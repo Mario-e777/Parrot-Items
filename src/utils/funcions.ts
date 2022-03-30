@@ -30,7 +30,13 @@ const destroyTokens = () => {
 };
 
 const getCurrentToken = (type?: string) => {
-  if (type === 'refresh') sessionStorage.getItem('refreshToken') ? sessionStorage.getItem('refreshToken') : Cookies.get('refreshToken');
+  if (type === 'refresh') {
+    if (sessionStorage.getItem('refreshToken')) {
+      return sessionStorage.getItem('refreshToken');
+    } else {
+      return Cookies.get('refreshToken');
+    }
+  };
   return sessionStorage.getItem('accessToken') ? sessionStorage.getItem('accessToken') : Cookies.get('accessToken');
 };
 

@@ -96,7 +96,6 @@ const ProductExpand = animated(styled.div`
 export default function itemExpand(props: {
   name: string,
   categoryData: Array<any>,
-  parentCallback: Function
 }) {
   /* Hooks stuff */
   const [fillerStyle, setIsExpanded] = useExpand();
@@ -125,7 +124,7 @@ export default function itemExpand(props: {
       height: `${ELEMENT_HEIGHT / BASE_FONT_SIZE}rem`,
       isOpen: state.isExpanded
     });
-  }, [state.isExpanded, props, props.parentCallback]);
+  }, [state.isExpanded, props]);
 
   return (
     <ProductExpand style={{ ...fillerStyle }} >
@@ -144,7 +143,6 @@ export default function itemExpand(props: {
             <Switch
               index={index}
               product={product}
-              parentCallback={props.parentCallback}
               status={product.availability}
               itemId={product.uuid}
             />

@@ -33,7 +33,7 @@ const SwitchContainer = styled.div`
   }
 `;
 
-export default function Switch({ itemId, status, parentCallback, product, index }) {
+export default function Switch({ itemId, status, product, index }) {
   const [state, setState] = useState({
     statusOn: status === 'AVAILABLE' ? true : false,
   });
@@ -43,7 +43,6 @@ export default function Switch({ itemId, status, parentCallback, product, index 
     setIsSwitchOn(!state.statusOn);
     updateItems(state.statusOn ? 'UNAVAILABLE' : 'AVAILABLE', itemId);
     setState({ ...state, statusOn: !state.statusOn });
-    parentCallback();
   };
 
   return (
