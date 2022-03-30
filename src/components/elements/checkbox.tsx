@@ -57,7 +57,7 @@ export default function Checkbox({ text, parentState }) {
   return (
     <CheckboxCotainer >
       <input tabIndex={-1} type='checkbox' onChange={() => setState(!state)} />
-      <button type='button' onClick={() => setState(!state)} className='custom-checkbox' >
+      <button aria-label='Remember me' type='button' onClick={() => setState(!state)} className='custom-checkbox' >
         <animated.span style={{ ...fillerStyle }} className='custom-checkbox-filler' />
       </button>
       <p>{text}</p>
