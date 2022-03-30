@@ -132,7 +132,7 @@ export default function itemExpand(props: {
         <p>{props.name}</p>
         <div className='expand-button' >
           <span>({props.categoryData.length})</span>
-          <animated.img style={{ ...rotateStyle }} className='open' src={expandArrow} />
+          <animated.img alt='open-close' style={{ ...rotateStyle }} className='open' src={expandArrow} />
         </div>
       </div>
       <ul
