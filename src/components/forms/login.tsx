@@ -91,7 +91,7 @@ export default function Login() {
   return (
     <LoginContainer onSubmit={event => handleLogIn(event)}>
       <div className='brand-container' >
-        <img src={Brand} />
+        <img alt='Parrot brand' src={Brand} />
         <p>Iniciar sesión - Sr. Frontend challenge</p>
       </div>
       <Input ref={emailRef} labeltext="Usuario" placeholder="john.doe@mail.com" type="email" required />

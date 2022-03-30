@@ -101,7 +101,7 @@ export default function products() {
       <GlobalLayout>
         <ProductsContainer>
           <div className='brand-container' >
-            <img src={Brand} />
+            <img alt='Parrot brand' src={Brand} />
           </div>
           <Products parentState={{ state, setState }} />
           <Filters options={state.categories} parentState={{ state, setState }} />

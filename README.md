@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://parrotitemsmain.gatsbyjs.io/">
-    <img alt="Parrot img" src="https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio04.png" width="480" />
+    <img alt="Parrot benefit" src="https://pos.parrotsoftware.io/wp-content/uploads/2022/03/Home-Beneficio04.png" width="480" />
   </a>
 </p>
 <h1 align="center">
